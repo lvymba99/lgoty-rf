@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Льготы для учителей | Социальный портал</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f9ff;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #1a5fb4;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        nav ul li a.active {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+        
+        /* Герой-секция */
+        .teacher-hero {
+            background: linear-gradient(rgba(26, 95, 180, 0.8), rgba(26, 95, 180, 0.9)), url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .teacher-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Секция льгот */
+        .benefits-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .benefit-content {
+            padding: 1.5rem;
+        }
+        
+        .benefit-content h3 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .apply-btn {
+            display: inline-block;
+            background-color: #1a5fb4;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: background-color 0.3s;
+        }
+        
+        .apply-btn:hover {
+            background-color: #134a8e;
+        }
+        
+        /* Калькулятор */
+        .teacher-calculator {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            border-top: 4px solid #1a5fb4;
+        }
+        
+        .teacher-calculator h3 {
+            color: #1a5fb4;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .calc-group {
+            margin-bottom: 1rem;
+        }
+        
+        .calc-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .calc-group input,
+        .calc-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .calc-btn {
+            background-color: #1a5fb4;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s;
+        }
+        
+        .calc-btn:hover {
+            background-color: #134a8e;
+        }
+        
+        .calc-result {
+            background: #f0f7ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: none;
+        }
+        
+        .calc-result h4 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1a5fb4;
+            margin: 0.5rem 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Аккордеон */
+        .accordion {
+            margin: 2rem 0;
+        }
+        
+        .accordion h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .accordion-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background-color: #f0f7ff;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .accordion-header:hover {
+            background-color: #e1efff;
+        }
+        
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5rem;
+        }
+        
+        .accordion-item.active .accordion-header::after {
+            content: '-';
+        }
+        
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-content {
+            padding: 1rem 1.5rem;
+            max-height: 1000px;
+        }
+        
+        /* Форма заявки */
+        .application-section {
+            margin: 2rem 0;
+        }
+        
+        .application-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #1a5fb4;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        footer .container {
+            max-width: 800px;
+        }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: #1a5fb4;
+                transition: left 0.3s;
+                padding: 2rem;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .teacher-hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .benefits-section h2,
+            .accordion h2,
+            .application-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .teacher-calculator {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .teacher-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calc-btn {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Портал учителей</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="teachers.html" class="active">Учителя</a></li>
+                    <li><a href="pensioners.html">Пенсионеры</a></li>
+                    <li><a href="families.html">Семьи</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="teacher-hero">
+        <div class="container">
+            <h1>Льготы и поддержка для учителей</h1>
+            <p>Полный перечень мер социальной поддержки и профессиональных льгот для педагогов</p>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <section class="benefits-section">
+            <h2>Доступные льготы для педагогов</h2>
+            <div class="benefits-container">
+                
+                <!-- Карточка льготы 3 -->
+                <div class="benefit-card">
+                    <img src="https://avatars.mds.yandex.net/get-mpic/3725687/img_id4788388552435412646.jpeg/orig" alt="Отпуск">
+                    <div class="benefit-content">
+                        <h3>Длительный отпуск</h3>
+                        <p>Право на отпуск до 1 года с сохранением места работы (раз в 10 лет).</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 4 -->
+                <div class="benefit-card">
+                    <img src="https://korotoyakskoe-r20.gosweb.gosuslugi.ru/netcat_files/37/45/pf.jpg" alt="Пенсия">
+                    <div class="benefit-content">
+                        <h3>Досрочная пенсия</h3>
+                        <p>Право на пенсию после 25 лет педагогического стажа (независимо от возраста).</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 5 -->
+                <div class="benefit-card">
+                    <img src="https://apkpro.ru/upload/resize_cache/iblock/468/1200_630_2/022utcy7xl2f0o2wpf5skv5ctf9lt7o2.jpg" alt="Курсы">
+                    <div class="benefit-content">
+                        <h3>Повышение квалификации</h3>
+                        <p>Бесплатное обучение на курсах повышения квалификации раз в 3 года.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </section>
+
+        <!-- Калькулятор выплат -->
+        <section class="teacher-calculator">
+            <h3>Калькулятор льгот для учителей</h3>
+            <div class="calculator-grid">
+                <div class="calc-group">
+                    <label for="teacherType">Тип учебного заведения</label>
+                    <select id="teacherType" required>
+                        <option value="">Выберите тип</option>
+                        <option value="school">Общеобразовательная школа</option>
+                        <option value="lyceum">Лицей/Гимназия</option>
+                        <option value="college">Колледж/Техникум</option>
+                        <option value="village">Сельская школа</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="experience">Педагогический стаж (лет)</label>
+                    <input type="number" id="experience" min="0" max="50" required>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="region">Регион работы</label>
+                    <select id="region" required>
+                        <option value="Moscow">Ставрополь</option>
+                        <option value="SPB">Санкт-Петербург</option>
+                        <option value="village">Сельская местность</option>
+                        <option value="other">Другой регион</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="qualification">Квалификационная категория</label>
+                    <select id="qualification">
+                        <option value="none">Нет</option>
+                        <option value="first">Первая</option>
+                        <option value="highest">Высшая</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="subject">Преподаваемый предмет</label>
+                    <select id="subject">
+                        <option value="common">Общеобразовательный</option>
+                        <option value="stem">STEM-дисциплины</option>
+                        <option value="language">Иностранные языки</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="awards">Награды/звания</label>
+                    <select id="awards">
+                        <option value="no">Нет</option>
+                        <option value="yes">Есть</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="button" class="calc-btn" onclick="calculateTeacherBenefits()">Рассчитать льготы</button>
+            
+            <div id="benefitResult" class="calc-result">
+                <h4>Ваши возможные льготы:</h4>
+                <div id="benefitDetails"></div>
+                <div class="benefit-amount" id="benefitTotal">0 ₽</div>
+                <p>Сумма ежемесячных доплат</p>
+                <p><small>Это предварительный расчет. Точную информацию уточняйте в отделе образования.</small></p>
+            </div>
+        </section>
+        
+        <!-- Аккордеон с часто задаваемыми вопросами -->
+        <section class="accordion">
+            <h2>Часто задаваемые вопросы</h2>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как оформить льготную ипотеку для учителей?</div>
+                <div class="accordion-content">
+                    <p>Для оформления льготной ипотеки необходимо:</p>
+                    <ol>
+                        <li>Иметь стаж педагогической работы не менее 3 лет</li>
+                        <li>Подготовить документы (паспорт, трудовую книжку, справку о доходах)</li>
+                        <li>Выбрать жилье в рамках программы (новостройка или вторичка)</li>
+                        <li>Обратиться в банк-участник программы (Сбербанк, ВТБ и др.)</li>
+                        <li>Получить одобрение и подписать договор</li>
+                    </ol>
+                    <p>Максимальная сумма кредита - 8 млн руб. (для Москвы и СПб) или 3 млн руб. (для других регионов).</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Какие документы нужны для получения подъемных в село?</div>
+                <div class="accordion-content">
+                    <p>Для получения подъемных выплат потребуются:</p>
+                    <ul>
+                        <li>Заявление на имя руководителя органа образования</li>
+                        <li>Копия трудовой книжки</li>
+                        <li>Копия договора с образовательным учреждением</li>
+                        <li>Документы, подтверждающие переезд (выписка из домовой книги и др.)</li>
+                        <li>Реквизиты банковского счета</li>
+                    </ul>
+                    <p>Размер выплаты зависит от региона и составляет от 500 тыс. до 1 млн руб.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как оформить досрочную пенсию педагогам?</div>
+                <div class="accordion-content">
+                    <p>Условия для досрочной пенсии:</p>
+                    <ul>
+                        <li>Не менее 25 лет педагогического стажа</li>
+                        <li>Работа в учреждениях для детей (школы, детсады, учреждения допобразования)</li>
+                        <li>Непрерывный стаж в последние 5 лет перед выходом на пенсию</li>
+                    </ul>
+                    <p>Для оформления обратитесь в ПФР с трудовой книжкой и документами об образовании.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Какие налоговые льготы есть у учителей?</div>
+                <div class="accordion-content">
+                    <p>Педагоги могут воспользоваться следующими налоговыми льготами:</p>
+                    <ul>
+                        <li>Налоговый вычет на покупку литературы (до 5 000 руб. в год)</li>
+                        <li>Освобождение от НДФЛ для компенсаций на методическую литературу</li>
+                        <li>Льготы по земельному налогу в некоторых регионах</li>
+                        <li>Скидки на оплату ЖКУ для сельских учителей</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как получить компенсацию за проезд к месту отдыха?</div>
+                <div class="accordion-content">
+                    <p>Порядок получения компенсации:</p>
+                    <ol>
+                        <li>Сохранить все билеты и документы о поездке</li>
+                        <li>Написать заявление в бухгалтерии учреждения</li>
+                        <li>Приложить копии билетов и чеков</li>
+                        <li>Дождаться перечисления средств (срок - до 3 месяцев)</li>
+                    </ol>
+                    <p>Компенсируется до 100% стоимости проезда (железнодорожный, авиа или автобусный транспорт).</p>
+                </div>
+            </div>
+        </section>
+        
+        
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Льготы РФ</p>
+            <p>Горячая линия: 8-800-777-12-12</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Аккордеон
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+                
+                // Закрываем другие открытые элементы
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Калькулятор льгот
+        function calculateTeacherBenefits() {
+            // Получаем значения из формы
+            const teacherType = document.getElementById('teacherType').value;
+            const experience = parseInt(document.getElementById('experience').value) || 0;
+            const region = document.getElementById('region').value;
+            const qualification = document.getElementById('qualification').value;
+            const subject = document.getElementById('subject').value;
+            const awards = document.getElementById('awards').value === 'yes';
+            
+            // Проверяем обязательные поля
+            if (!teacherType) {
+                alert('Пожалуйста, укажите тип учебного заведения');
+                return;
+            }
+            
+            // Расчет льгот (упрощенная логика)
+            let benefits = 0;
+            let details = [];
+            
+            // Базовые выплаты по типам учреждений
+            if (teacherType === 'school') {
+                benefits += 5000;
+                details.push({ name: 'Базовая доплата для школьных учителей', amount: 5000 });
+            } else if (teacherType === 'lyceum') {
+                benefits += 7000;
+                details.push({ name: 'Базовая доплата для лицеев/гимназий', amount: 7000 });
+            } else if (teacherType === 'college') {
+                benefits += 6000;
+                details.push({ name: 'Базовая доплата для колледжей', amount: 6000 });
+            } else if (teacherType === 'village') {
+                benefits += 10000;
+                details.push({ name: 'Базовая доплата для сельских учителей', amount: 10000 });
+            }
+            
+            // Надбавки за стаж
+            if (experience >= 5) {
+                benefits += 2000;
+                details.push({ name: 'Надбавка за стаж (5+ лет)', amount: 2000 });
+            }
+            if (experience >= 10) {
+                benefits += 3000;
+                details.push({ name: 'Надбавка за стаж (10+ лет)', amount: 3000 });
+            }
+            if (experience >= 20) {
+                benefits += 5000;
+                details.push({ name: 'Надбавка за стаж (20+ лет)', amount: 5000 });
+            }
+            
+            // Надбавки за квалификацию
+            if (qualification === 'first') {
+                benefits += 4000;
+                details.push({ name: 'Надбавка за первую категорию', amount: 4000 });
+            } else if (qualification === 'highest') {
+                benefits += 7000;
+                details.push({ name: 'Надбавка за высшую категорию', amount: 7000 });
+            }
+            
+            // Надбавки за предмет
+            if (subject === 'stem') {
+                benefits += 5000;
+                details.push({ name: 'Надбавка за STEM-дисциплины', amount: 5000 });
+            } else if (subject === 'language') {
+                benefits += 4000;
+                details.push({ name: 'Надбавка за иностранные языки', amount: 4000 });
+            }
+            
+            // Надбавки за награды
+            if (awards) {
+                benefits += 8000;
+                details.push({ name: 'Надбавка за государственные награды', amount: 8000 });
+            }
+            
+            // Региональные коэффициенты
+            if (region === 'Moscow') {
+                benefits += 10000;
+                details.push({ name: 'Ставропольская доплата', amount: 10000 });
+            } else if (region === 'SPB') {
+                benefits += 8000;
+                details.push({ name: 'Санкт-Петербургская доплата', amount: 8000 });
+            } else if (region === 'village') {
+                benefits += 12000;
+                details.push({ name: 'Сельская доплата', amount: 12000 });
+            }
+            
+            // Показываем результаты
+            const resultDiv = document.getElementById('benefitResult');
+            const detailsDiv = document.getElementById('benefitDetails');
+            const totalDiv = document.getElementById('benefitTotal');
+            
+            detailsDiv.innerHTML = '';
+            details.forEach(item => {
+                detailsDiv.innerHTML += `<p>${item.name}: <strong>${item.amount.toLocaleString('ru-RU')} ₽</strong></p>`;
+            });
+            
+            totalDiv.textContent = Math.round(benefits).toLocaleString('ru-RU') + ' ₽';
+            resultDiv.style.display = 'block';
+            
+            // Прокручиваем к результатам
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

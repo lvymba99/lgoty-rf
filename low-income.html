@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Льготы для малоимущих | Социальный портал</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f9ff;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #1a5fb4;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        nav ul li a.active {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+        
+        /* Герой-секция */
+        .lowincome-hero {
+            background: linear-gradient(rgba(26, 95, 180, 0.8), rgba(26, 95, 180, 0.9)), url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .lowincome-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Секция льгот */
+        .benefits-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .benefit-content {
+            padding: 1.5rem;
+        }
+        
+        .benefit-content h3 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .apply-btn {
+            display: inline-block;
+            background-color: #1a5fb4;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: background-color 0.3s;
+        }
+        
+        .apply-btn:hover {
+            background-color: #134a8e;
+        }
+        
+        /* Калькулятор */
+        .lowincome-calculator {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .lowincome-calculator h3 {
+            color: #1a5fb4;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .calc-group {
+            margin-bottom: 1rem;
+        }
+        
+        .calc-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .calc-group input,
+        .calc-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .calc-btn {
+            background-color: #1a5fb4;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s;
+        }
+        
+        .calc-btn:hover {
+            background-color: #134a8e;
+        }
+        
+        .calc-result {
+            background: #f3e5f5;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: none;
+        }
+        
+        .calc-result h4 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1a5fb4;
+            margin: 0.5rem 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Аккордеон */
+        .accordion {
+            margin: 2rem 0;
+        }
+        
+        .accordion h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .accordion-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background-color: #f0f7ff;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .accordion-header:hover {
+            background-color: #e1efff;
+        }
+        
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5rem;
+        }
+        
+        .accordion-item.active .accordion-header::after {
+            content: '-';
+        }
+        
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-content {
+            padding: 1rem 1.5rem;
+            max-height: 1000px;
+        }
+        
+        /* Форма заявки */
+        .application-section {
+            margin: 2rem 0;
+        }
+        
+        .application-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #1a5fb4;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        footer .container {
+            max-width: 800px;
+        }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: #1a5fb4;
+                transition: left 0.3s;
+                padding: 2rem;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .lowincome-hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .benefits-section h2,
+            .accordion h2,
+            .application-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .lowincome-calculator {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .lowincome-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calc-btn {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Поддержка малоимущих</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="lowincome.html" class="active">Малоимущие</a></li>
+                    <li><a href="families.html">Многодетные</a></li>
+                    <li><a href="pensioners.html">Пенсионеры</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="lowincome-hero">
+        <div class="container">
+            <h1>Льготы и поддержка для малоимущих семей</h1>
+            <p>Полный перечень мер социальной поддержки для семей с низким уровнем дохода</p>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <section class="benefits-section">
+            <h2>Доступные льготы для малоимущих</h2>
+            <div class="benefits-container">
+                <!-- Карточка льготы 1 -->
+                <div class="benefit-card">
+                    <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Пособия">
+                    <div class="benefit-content">
+                        <h3>Ежемесячные пособия</h3>
+                        <p>Денежные выплаты на каждого члена семьи в зависимости от региона проживания.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 2 -->
+                <div class="benefit-card">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="ЖКХ">
+                    <div class="benefit-content">
+                        <h3>Субсидии на ЖКУ</h3>
+                        <p>Компенсация до 50% расходов на коммунальные услуги для нуждающихся семей.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 3 -->
+                <div class="benefit-card">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Питание">
+                    <div class="benefit-content">
+                        <h3>Бесплатное питание</h3>
+                        <p>Обеспечение бесплатным питанием детей в школах и детских садах.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </section>
+
+        <!-- Калькулятор выплат -->
+        <section class="lowincome-calculator">
+            <h3>Калькулятор льгот для малоимущих</h3>
+            <div class="calculator-grid">
+                <div class="calc-group">
+                    <label for="familyMembers">Количество членов семьи</label>
+                    <select id="familyMembers" required>
+                        <option value="1">1 человек</option>
+                        <option value="2">2 человека</option>
+                        <option value="3">3 человека</option>
+                        <option value="4">4 человека</option>
+                        <option value="5">5 и более человек</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="childrenCount">Количество детей</label>
+                    <select id="childrenCount">
+                        <option value="0">Нет детей</option>
+                        <option value="1">1 ребенок</option>
+                        <option value="2">2 ребенка</option>
+                        <option value="3">3 и более детей</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="region">Регион проживания</label>
+                    <select id="region" required>
+                        <option value="Moscow">Ставрополь</option>
+                        <option value="SPB">Санкт-Петербург</option>
+                        <option value="other">Другой регион</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="income">Общий доход семьи (руб. в месяц)</label>
+                    <input type="number" id="income" required>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="disabled">Есть ли инвалиды в семье</label>
+                    <select id="disabled">
+                        <option value="no">Нет</option>
+                        <option value="yes">Да</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="singleParent">Неполная семья</label>
+                    <select id="singleParent">
+                        <option value="no">Нет</option>
+                        <option value="yes">Да</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="button" class="calc-btn" onclick="calculateLowIncomeBenefits()">Рассчитать льготы</button>
+            
+            <div id="benefitResult" class="calc-result">
+                <h4>Ваши возможные льготы:</h4>
+                <div id="benefitDetails"></div>
+                <div class="benefit-amount" id="benefitTotal">0 ₽</div>
+                <p>Сумма ежемесячных выплат</p>
+                <p><small>Это предварительный расчет. Точную информацию уточняйте в соцзащите.</small></p>
+            </div>
+        </section>
+        
+        <!-- Аккордеон с часто задаваемыми вопросами -->
+        <section class="accordion">
+            <h2>Часто задаваемые вопросы</h2>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как получить статус малоимущей семьи?</div>
+                <div class="accordion-content">
+                    <p>Для получения статуса малоимущей семьи необходимо:</p>
+                    <ol>
+                        <li>Подготовить документы (паспорта, свидетельства о рождении, справки о доходах за последние 3 месяца)</li>
+                        <li>Рассчитать среднедушевой доход (общий доход семьи / количество членов семьи)</li>
+                        <li>Сравнить полученную сумму с прожиточным минимумом в вашем регионе</li>
+                        <li>Если доход ниже - обратиться в органы соцзащиты с заявлением</li>
+                    </ol>
+                    <p>Статус присваивается на 1 год с возможностью продления.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Какие документы нужны для оформления пособий?</div>
+                <div class="accordion-content">
+                    <p>Для оформления пособий потребуются:</p>
+                    <ul>
+                        <li>Заявление на предоставление пособия</li>
+                        <li>Паспорта взрослых членов семьи</li>
+                        <li>Свидетельства о рождении детей</li>
+                        <li>Справки о доходах всех работающих членов семьи</li>
+                        <li>Выписка из домовой книги</li>
+                        <li>Реквизиты банковского счета</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как оформить субсидию на ЖКУ?</div>
+                <div class="accordion-content">
+                    <p>Порядок оформления субсидии:</p>
+                    <ol>
+                        <li>Собрать квитанции об оплате ЖКУ за последние 6 месяцев</li>
+                        <li>Подготовить документы, подтверждающие доходы семьи</li>
+                        <li>Обратиться в МФЦ или управляющую компанию</li>
+                        <li>Написать заявление на предоставление субсидии</li>
+                        <li>Дождаться решения (рассматривается до 10 рабочих дней)</li>
+                    </ol>
+                    <p>Субсидия перечисляется на банковский счет ежемесячно.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Какие налоговые льготы есть у малоимущих?</div>
+                <div class="accordion-content">
+                    <p>Малоимущие семьи могут воспользоваться следующими налоговыми льготами:</p>
+                    <ul>
+                        <li>Увеличенный налоговый вычет на детей по НДФЛ</li>
+                        <li>Освобождение от налога на имущество в некоторых регионах</li>
+                        <li>Льготы по земельному налогу</li>
+                        <li>Скидки на транспортный налог</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как получить бесплатное питание в школе для ребенка?</div>
+                <div class="accordion-content">
+                    <p>Для получения бесплатного питания:</p>
+                    <ol>
+                        <li>Обратиться в администрацию школы с заявлением</li>
+                        <li>Предоставить справку о статусе малоимущей семьи</li>
+                        <li>Приложить копию свидетельства о рождении ребенка</li>
+                        <li>Дождаться решения школьной комиссии</li>
+                    </ol>
+                    <p>Питание предоставляется с начала следующего месяца после подачи документов.</p>
+                </div>
+            </div>
+        </section>
+        
+        
+
+   <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Льготы РФ</p>
+            <p>Горячая линия: 8-800-777-12-12</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Аккордеон
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+                
+                // Закрываем другие открытые элементы
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Калькулятор льгот
+        function calculateLowIncomeBenefits() {
+            // Получаем значения из формы
+            const familyMembers = parseInt(document.getElementById('familyMembers').value);
+            const childrenCount = parseInt(document.getElementById('childrenCount').value);
+            const region = document.getElementById('region').value;
+            const income = parseInt(document.getElementById('income').value) || 0;
+            const disabled = document.getElementById('disabled').value === 'yes';
+            const singleParent = document.getElementById('singleParent').value === 'yes';
+            
+            // Проверяем обязательные поля
+            if (!income) {
+                alert('Пожалуйста, укажите общий доход семьи');
+                return;
+            }
+            
+            // Расчет льгот (упрощенная логика)
+            let benefits = 0;
+            let details = [];
+            
+            // Базовые выплаты по количеству членов семьи
+            if (familyMembers === 1) {
+                benefits += 5000;
+                details.push({ name: 'Ежемесячное пособие для одиноких', amount: 5000 });
+            } else if (familyMembers === 2) {
+                benefits += 8000;
+                details.push({ name: 'Ежемесячное пособие на семью из 2 человек', amount: 8000 });
+            } else if (familyMembers === 3) {
+                benefits += 12000;
+                details.push({ name: 'Ежемесячное пособие на семью из 3 человек', amount: 12000 });
+            } else if (familyMembers === 4) {
+                benefits += 15000;
+                details.push({ name: 'Ежемесячное пособие на семью из 4 человек', amount: 15000 });
+            } else if (familyMembers >= 5) {
+                benefits += 20000;
+                details.push({ name: 'Ежемесячное пособие на большую семью', amount: 20000 });
+            }
+            
+            // Доплаты за детей
+            if (childrenCount === 1) {
+                benefits += 3000;
+                details.push({ name: 'Доплата на 1 ребенка', amount: 3000 });
+            } else if (childrenCount === 2) {
+                benefits += 7000;
+                details.push({ name: 'Доплата на 2 детей', amount: 7000 });
+            } else if (childrenCount >= 3) {
+                benefits += 12000;
+                details.push({ name: 'Доплата на 3+ детей', amount: 12000 });
+            }
+            
+            // Доплаты за низкий доход
+            const incomePerPerson = income / familyMembers;
+            if (incomePerPerson < 12000) {
+                benefits += 6000;
+                details.push({ name: 'Доплата за очень низкий доход', amount: 6000 });
+            } else if (incomePerPerson < 18000) {
+                benefits += 3000;
+                details.push({ name: 'Доплата за низкий доход', amount: 3000 });
+            }
+            
+            // Доплаты за инвалидов в семье
+            if (disabled) {
+                benefits += 8000;
+                details.push({ name: 'Доплата на члена семьи с инвалидностью', amount: 8000 });
+            }
+            
+            // Доплаты для неполных семей
+            if (singleParent) {
+                benefits += 5000;
+                details.push({ name: 'Доплата для неполной семьи', amount: 5000 });
+            }
+            
+            // Региональные коэффициенты
+            if (region === 'Moscow') {
+                benefits += 10000;
+                details.push({ name: 'Ставропольская доплата', amount: 10000 });
+            } else if (region === 'SPB') {
+                benefits += 8000;
+                details.push({ name: 'Санкт-Петербургская доплата', amount: 8000 });
+            }
+            
+            // Показываем результаты
+            const resultDiv = document.getElementById('benefitResult');
+            const detailsDiv = document.getElementById('benefitDetails');
+            const totalDiv = document.getElementById('benefitTotal');
+            
+            detailsDiv.innerHTML = '';
+            details.forEach(item => {
+                detailsDiv.innerHTML += `<p>${item.name}: <strong>${item.amount.toLocaleString('ru-RU')} ₽</strong></p>`;
+            });
+            
+            totalDiv.textContent = Math.round(benefits).toLocaleString('ru-RU') + ' ₽';
+            resultDiv.style.display = 'block';
+            
+            // Прокручиваем к результатам
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

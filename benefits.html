@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Льготы - Льготы РФ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f9ff;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #1a5fb4;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: opacity 0.3s;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.15);
+        }
+        
+        .login-btn {
+            background-color: white;
+            color: #1a5fb4;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .benefits-content h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        /* Карточки льгот */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .benefit-info {
+            padding: 1.5rem;
+        }
+        
+        .benefit-info h3 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .benefit-info p {
+            margin-bottom: 0;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #1a5fb4;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .footer-content p {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: #1a5fb4;
+                transition: left 0.3s;
+                padding: 2rem;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .login-btn {
+                display: none;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Логотип">
+                <span>Льготы РФ</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="benefits.html" class="nav-link active">Льготы</a></li>
+                    <li><a href="news.html" class="nav-link">Новости</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <section class="benefits-content">
+            <h2>Льготы</h2>
+            <div class="benefits-grid">
+                <!-- Карточка льготы 1 -->
+                <a href="pensioners.html" class="benefit-card">
+                    <img src="https://cdn.culture.ru/images/237b0456-e5f8-50b4-b148-1568a32b3d2f" alt="Пенсионеры">
+                    <div class="benefit-info">
+                        <h3>Льготы для пенсионеров</h3>
+                        <p>Пенсионеры имеют право на льготы по оплате ЖКХ, транспортные льготы и дополнительные выплаты.</p>
+                    </div>
+                </a>
+                
+                <!-- Карточка льготы 2 -->
+                <a href="families.html" class="benefit-card">
+                    <img src="https://on-desktop.com/wps/2020People___Entertainment_and_recreation_Happy_family_plays_soccer_on_the_field_143680_.jpg" alt="Семьи с детьми">
+                    <div class="benefit-info">
+                        <h3>Льготы для семей с детьми</h3>
+                        <p>Семьи с детьми могут получить пособия, налоговые вычеты и льготы на образование.</p>
+                    </div>
+                </a>
+                
+                <!-- Карточка льготы 3 -->
+                <a href="disabled.html" class="benefit-card">
+                    <img src="https://stihi.ru/pics/2022/09/10/6615.jpg" alt="Инвалиды">
+                    <div class="benefit-info">
+                        <h3>Льготы для людей с ОВЗ</h3>
+                        <p>Люди с ОВЗ имеют право на бесплатное медицинское обслуживание, льготы на лекарства и транспорт.</p>
+                    </div>
+                </a>
+                
+                <!-- Карточка льготы 4 -->
+                <a href="students.html" class="benefit-card">
+                    <img src="https://static.tildacdn.com/tild3564-3361-4339-a463-336531636631/aa765512a4352f960ed8.jpg" alt="Студенты">
+                    <div class="benefit-info">
+                        <h3>Льготы для студентов</h3>
+                        <p>Студенты могут получить скидки на проезд, льготы на жилье и стипендии.</p>
+                    </div>
+                </a>
+                
+                <!-- Карточка льготы 5 -->
+                <a href="veterans.html" class="benefit-card">
+                    <img src="https://www.dalenergomash.ru/sites/default/files/news/images/img_8382.jpg" alt="Ветераны">
+                    <div class="benefit-info">
+                        <h3>Льготы для ветеранов</h3>
+                        <p>Ветераны имеют право на льготы по оплате ЖКХ, медицинское обслуживание и дополнительные выплаты.</p>
+                    </div>
+                </a>
+                
+                <!-- Карточка льготы 6 -->
+                <a href="teachers.html" class="benefit-card">
+                    <img src="https://egov-buryatia.ru/upload/iblock/51e/51efa9549184ac3ff9aefaae030851aa.jpg" alt="Учителя">
+                    <div class="benefit-info">
+                        <h3>Льготы для учителей</h3>
+                        <p>Учителя могут получить льготы на жилье, транспорт и медицинское обслуживание.</p>
+                    </div>
+                </a>
+                
+                <!-- Карточка льготы 7 -->
+                <a href="doctors.html" class="benefit-card">
+                    <img src="https://avatars.mds.yandex.net/i?id=a5b2b02b4179134183728b8b547b4cd8_l-5839308-images-thumbs&n=13" alt="Врачи">
+                    <div class="benefit-info">
+                        <h3>Льготы для врачей</h3>
+                        <p>Врачи имеют право на льготы по оплате ЖКХ, транспортные льготы и дополнительные выплаты.</p>
+                    </div>
+                </a>
+                
+                <!-- Карточка льготы 8 -->
+                <a href="large-families.html" class="benefit-card">
+                    <img src="https://sun1-85.userapi.com/s/v1/ig2/WguWp6ROnd6_956m5uosH_fcc3XFyw4ZVdgo8pkTwXU6K4fG6ayTZpzJEwlRBMmjaAnrSlmITg_CCUjBKhO7VYJU.jpg?quality=96&as=32x21,48x32,72x48,108x72,160x107,240x160,360x240,480x320,540x360,640x426,720x480,1080x720,1280x853&from=bu&u=WluGuV8iqg8inwhEWKjFs7P_bSMfAIoKLwa28MibPvE&cs=807x538" alt="Многодетные семьи">
+                    <div class="benefit-info">
+                        <h3>Льготы для многодетных семей</h3>
+                        <p>Многодетные семьи могут получить льготы на жилье, транспорт и образование.</p>
+                    </div>
+                </a>
+                
+                <!-- Карточка льготы 9 -->
+                <a href="low-income.html" class="benefit-card">
+                    <img src="https://sun9-18.userapi.com/impg/wJxdO1zcjMijRS8y011ghZCm46GjrVVryvp5gA/OjXKQ58L0H8.jpg?size=900x506&quality=96&sign=4f4be40a8d5272ea26b72a8d95a973ee&c_uniq_tag=-W76F8DkyR87Agy_a892HaFvPXss1Xzho4zSbcmxnQY&type=album" alt="Малоимущие">
+                    <div class="benefit-info">
+                        <h3>Льготы для малоимущих</h3>
+                        <p>Малоимущие семьи могут получить льготы на жилье, питание и медицинское обслуживание.</p>
+                    </div>
+                </a>
+                
+                <!-- Карточка льготы 10 -->
+                <a href="young-specialists.html" class="benefit-card">
+                    <img src="https://kosmogid.ru/wp-content/uploads/2022/01/84a905e003a615c706f0b6d657ce940e.jpg" alt="Молодые специалисты">
+                    <div class="benefit-info">
+                        <h3>Льготы для молодых специалистов</h3>
+                        <p>Молодые специалисты могут получить льготы на жилье, транспорт и образование.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Льготы РФ</p>
+            <p>Горячая линия: 8-800-777-12-12</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Закрытие меню при клике на ссылку (для мобильных)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    mainNav.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

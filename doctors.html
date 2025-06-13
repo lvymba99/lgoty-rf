@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Льготы для врачей | Социальный портал</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f8ff;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #1a5fb4;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        nav ul li a.active {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+        
+        /* Герой-секция */
+        .doctor-hero {
+            background: linear-gradient(rgba(26, 95, 180, 0.7), rgba(26, 95, 180, 0.8)), url('https://images.unsplash.com/photo-1579684453423-f84349ef60b0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .doctor-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Секция льгот */
+        .benefits-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-top: 4px solid #1a5fb4;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .benefit-content {
+            padding: 1.5rem;
+        }
+        
+        .benefit-content h3 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .apply-btn {
+            display: inline-block;
+            background-color: #1a5fb4;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: background-color 0.3s;
+        }
+        
+        .apply-btn:hover {
+            background-color: #134a8e;
+        }
+        
+        /* Калькулятор */
+        .doctor-calculator {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            border-top: 4px solid #1a5fb4;
+        }
+        
+        .doctor-calculator h3 {
+            color: #1a5fb4;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .calc-group {
+            margin-bottom: 1rem;
+        }
+        
+        .calc-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .calc-group input,
+        .calc-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .calc-btn {
+            background-color: #1a5fb4;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s;
+        }
+        
+        .calc-btn:hover {
+            background-color: #134a8e;
+        }
+        
+        .calc-result {
+            background: #e6f0fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: none;
+        }
+        
+        .calc-result h4 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1a5fb4;
+            margin: 0.5rem 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Аккордеон */
+        .accordion {
+            margin: 2rem 0;
+        }
+        
+        .accordion h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .accordion-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background-color: #e6f0fa;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .accordion-header:hover {
+            background-color: #d0e0f0;
+        }
+        
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5rem;
+        }
+        
+        .accordion-item.active .accordion-header::after {
+            content: '-';
+        }
+        
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-content {
+            padding: 1rem 1.5rem;
+            max-height: 1000px;
+        }
+        
+        /* Форма заявки */
+        .application-section {
+            margin: 2rem 0;
+        }
+        
+        .application-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #1a5fb4;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        footer .container {
+            max-width: 800px;
+        }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: #1a5fb4;
+                transition: left 0.3s;
+                padding: 2rem;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .doctor-hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .benefits-section h2,
+            .accordion h2,
+            .application-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .doctor-calculator {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .doctor-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calc-btn {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Портал врачей</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="doctors.html" class="active">Врачи</a></li>
+                    <li><a href="teachers.html">Учителя</a></li>
+                    <li><a href="pensioners.html">Пенсионеры</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="doctor-hero">
+        <div class="container">
+            <h1>Льготы и поддержка для медицинских работников</h1>
+            <p>Полный перечень мер социальной поддержки и профессиональных льгот для врачей и медработников</p>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <section class="benefits-section">
+            <h2>Доступные льготы для врачей</h2>
+            <div class="benefits-container">
+                
+                
+                <!-- Карточка льготы 3 -->
+                <div class="benefit-card">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Зарплата">
+                    <div class="benefit-content">
+                        <h3>Повышенные оклады</h3>
+                        <p>Повышающие коэффициенты к окладу для врачей в государственных учреждениях.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 4 -->
+                <div class="benefit-card">
+                    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Пенсия">
+                    <div class="benefit-content">
+                        <h3>Досрочная пенсия</h3>
+                        <p>Право на пенсию после 25-30 лет медицинского стажа (в зависимости от специальности).</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                
+                <!-- Карточка льготы 6 -->
+                <div class="benefit-card">
+                    <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Отдых">
+                    <div class="benefit-content">
+                        <h3>Санаторно-курортное лечение</h3>
+                        <p>Льготные путевки в санатории для врачей и членов их семей.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Калькулятор выплат -->
+        <section class="doctor-calculator">
+            <h3>Калькулятор льгот для врачей</h3>
+            <div class="calculator-grid">
+                <div class="calc-group">
+                    <label for="doctorType">Специальность</label>
+                    <select id="doctorType" required>
+                        <option value="">Выберите специальность</option>
+                        <option value="therapist">Терапевт</option>
+                        <option value="surgeon">Хирург</option>
+                        <option value="pediatrician">Педиатр</option>
+                        <option value="rural">Сельский врач</option>
+                        <option value="narrow">Узкий специалист</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="experience">Медицинский стаж (лет)</label>
+                    <input type="number" id="experience" min="0" max="50" required>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="region">Регион работы</label>
+                    <select id="region" required>
+                        <option value="Moscow">Ставрополь</option>
+                        <option value="SPB">Санкт-Петербург</option>
+                        <option value="village">Сельская местность</option>
+                        <option value="far_east">Дальний Восток</option>
+                        <option value="other">Другой регион</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="qualification">Квалификационная категория</label>
+                    <select id="qualification">
+                        <option value="none">Нет</option>
+                        <option value="second">Вторая</option>
+                        <option value="first">Первая</option>
+                        <option value="highest">Высшая</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="shift">График работы</label>
+                    <select id="shift">
+                        <option value="regular">Обычный</option>
+                        <option value="shift">Вахтовый метод</option>
+                        <option value="night">Ночные смены</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="awards">Награды/звания</label>
+                    <select id="awards">
+                        <option value="no">Нет</option>
+                        <option value="yes">Есть</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="button" class="calc-btn" onclick="calculateDoctorBenefits()">Рассчитать льготы</button>
+            
+            <div id="benefitResult" class="calc-result">
+                <h4>Ваши возможные льготы:</h4>
+                <div id="benefitDetails"></div>
+                <div class="benefit-amount" id="benefitTotal">0 ₽</div>
+                <p>Сумма ежемесячных доплат</p>
+                <p><small>Это предварительный расчет. Точную информацию уточняйте в отделе кадров.</small></p>
+            </div>
+        </section>
+        
+        <!-- Аккордеон с часто задаваемыми вопросами -->
+        <section class="accordion">
+            <h2>Часто задаваемые вопросы</h2>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как оформить льготную ипотеку для врачей?</div>
+                <div class="accordion-content">
+                    <p>Для оформления льготной ипотеки необходимо:</p>
+                    <ol>
+                        <li>Иметь диплом врача и работать по специальности не менее 3 лет</li>
+                        <li>Выбрать жилье в новостройке (вторичное жилье не участвует в программе)</li>
+                        <li>Подготовить документы (паспорт, диплом, трудовую книжку, справку 2-НДФЛ)</li>
+                        <li>Обратиться в банк-участник программы (Сбербанк, ДОМ.РФ и др.)</li>
+                        <li>Получить одобрение и подписать договор</li>
+                    </ol>
+                    <p>Максимальная сумма кредита - 12 млн руб. (для Москвы и СПб) или 6 млн руб. (для других регионов).</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Какие документы нужны для получения подъемных в село?</div>
+                <div class="accordion-content">
+                    <p>Для получения подъемных выплат потребуются:</p>
+                    <ul>
+                        <li>Заявление на имя руководителя органа здравоохранения</li>
+                        <li>Копия диплома о медицинском образовании</li>
+                        <li>Копия трудового договора с медучреждением</li>
+                        <li>Документы, подтверждающие переезд (выписка из домовой книги и др.)</li>
+                        <li>Реквизиты банковского счета</li>
+                    </ul>
+                    <p>Размер выплаты зависит от региона и составляет от 1 до 2 млн руб.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как оформить досрочную пенсию медработникам?</div>
+                <div class="accordion-content">
+                    <p>Условия для досрочной пенсии:</p>
+                    <ul>
+                        <li>25 лет стажа - для городских медработников</li>
+                        <li>30 лет стажа - для сельских медработников</li>
+                        <li>Работа в учреждениях здравоохранения (больницы, поликлиники, станции скорой помощи)</li>
+                        <li>Непрерывный стаж в последние 5-8 лет перед выходом на пенсию</li>
+                    </ul>
+                    <p>Для оформления обратитесь в ПФР с трудовой книжкой и документами об образовании.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Какие налоговые льготы есть у врачей?</div>
+                <div class="accordion-content">
+                    <p>Медицинские работники могут воспользоваться следующими налоговыми льготами:</p>
+                    <ul>
+                        <li>Налоговый вычет на покупку профессиональной литературы (до 10 000 руб. в год)</li>
+                        <li>Освобождение от НДФЛ для компенсаций на спецодежду и инструменты</li>
+                        <li>Льготы по транспортному налогу в некоторых регионах</li>
+                        <li>Скидки на оплату ЖКУ для сельских врачей</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как получить путевку в санаторий для медработников?</div>
+                <div class="accordion-content">
+                    <p>Порядок получения санаторно-курортной путевки:</p>
+                    <ol>
+                        <li>Получить медицинское заключение о необходимости санаторного лечения</li>
+                        <li>Подать заявление в Фонд социального страхования или профсоюз</li>
+                        <li>Предоставить копию трудовой книжки и паспорта</li>
+                        <li>Дождаться очереди (врачи имеют приоритет)</li>
+                    </ol>
+                    <p>Частота предоставления путевок - 1 раз в 2 года с оплатой 30% стоимости.</p>
+                </div>
+            </div>
+        </section>
+        
+        
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Льготы РФ</p>
+            <p>Горячая линия: 8-800-777-12-12</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Аккордеон
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+                
+                // Закрываем другие открытые элементы
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Калькулятор льгот
+        function calculateDoctorBenefits() {
+            // Получаем значения из формы
+            const doctorType = document.getElementById('doctorType').value;
+            const experience = parseInt(document.getElementById('experience').value) || 0;
+            const region = document.getElementById('region').value;
+            const qualification = document.getElementById('qualification').value;
+            const shift = document.getElementById('shift').value;
+            const awards = document.getElementById('awards').value === 'yes';
+            
+            // Проверяем обязательные поля
+            if (!doctorType) {
+                alert('Пожалуйста, укажите специальность');
+                return;
+            }
+            
+            // Расчет льгот (упрощенная логика)
+            let benefits = 0;
+            let details = [];
+            
+            // Базовые выплаты по специальностям
+            if (doctorType === 'therapist') {
+                benefits += 10000;
+                details.push({ name: 'Базовая доплата для терапевтов', amount: 10000 });
+            } else if (doctorType === 'surgeon') {
+                benefits += 15000;
+                details.push({ name: 'Базовая доплата для хирургов', amount: 15000 });
+            } else if (doctorType === 'pediatrician') {
+                benefits += 12000;
+                details.push({ name: 'Базовая доплата для педиатров', amount: 12000 });
+            } else if (doctorType === 'rural') {
+                benefits += 20000;
+                details.push({ name: 'Базовая доплата для сельских врачей', amount: 20000 });
+            } else if (doctorType === 'narrow') {
+                benefits += 13000;
+                details.push({ name: 'Базовая доплата для узких специалистов', amount: 13000 });
+            }
+            
+            // Надбавки за стаж
+            if (experience >= 5) {
+                benefits += 5000;
+                details.push({ name: 'Надбавка за стаж (5+ лет)', amount: 5000 });
+            }
+            if (experience >= 10) {
+                benefits += 8000;
+                details.push({ name: 'Надбавка за стаж (10+ лет)', amount: 8000 });
+            }
+            if (experience >= 20) {
+                benefits += 12000;
+                details.push({ name: 'Надбавка за стаж (20+ лет)', amount: 12000 });
+            }
+            
+            // Надбавки за квалификацию
+            if (qualification === 'second') {
+                benefits += 5000;
+                details.push({ name: 'Надбавка за вторую категорию', amount: 5000 });
+            } else if (qualification === 'first') {
+                benefits += 10000;
+                details.push({ name: 'Надбавка за первую категорию', amount: 10000 });
+            } else if (qualification === 'highest') {
+                benefits += 15000;
+                details.push({ name: 'Надбавка за высшую категорию', amount: 15000 });
+            }
+            
+            // Надбавки за график работы
+            if (shift === 'shift') {
+                benefits += 10000;
+                details.push({ name: 'Надбавка за вахтовый метод', amount: 10000 });
+            } else if (shift === 'night') {
+                benefits += 8000;
+                details.push({ name: 'Надбавка за ночные смены', amount: 8000 });
+            }
+            
+            // Надбавки за награды
+            if (awards) {
+                benefits += 10000;
+                details.push({ name: 'Надбавка за государственные награды', amount: 10000 });
+            }
+            
+            // Региональные коэффициенты
+            if (region === 'Moscow') {
+                benefits += 15000;
+                details.push({ name: 'Ставропольская доплата', amount: 15000 });
+            } else if (region === 'SPB') {
+                benefits += 12000;
+                details.push({ name: 'Санкт-Петербургская доплата', amount: 12000 });
+            } else if (region === 'village') {
+                benefits += 18000;
+                details.push({ name: 'Сельская доплата', amount: 18000 });
+            } else if (region === 'far_east') {
+                benefits += 20000;
+                details.push({ name: 'Дальневосточная доплата', amount: 20000 });
+            }
+            
+            // Показываем результаты
+            const resultDiv = document.getElementById('benefitResult');
+            const detailsDiv = document.getElementById('benefitDetails');
+            const totalDiv = document.getElementById('benefitTotal');
+            
+            detailsDiv.innerHTML = '';
+            details.forEach(item => {
+                detailsDiv.innerHTML += `<p>${item.name}: <strong>${item.amount.toLocaleString('ru-RU')} ₽</strong></p>`;
+            });
+            
+            totalDiv.textContent = Math.round(benefits).toLocaleString('ru-RU') + ' ₽';
+            resultDiv.style.display = 'block';
+            
+            // Прокручиваем к результатам
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

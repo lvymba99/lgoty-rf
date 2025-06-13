@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Льготы РФ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f9ff;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #1a5fb4;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: opacity 0.3s;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.15);
+        }
+        
+        .login-btn {
+            background-color: white;
+            color: #1a5fb4;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #f0f0f0;
+        }
+        /* Основное меню */
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        .login-btn {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+        }
+        
+        .login-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Раздел FAQ */
+        .faq-content {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .faq-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        details {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        summary {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+            outline: none;
+            padding: 10px 0;
+        }
+        
+        details p {
+            padding: 10px 0;
+            margin-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #1a5fb4;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        footer p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: #1a5fb4;
+                transition: left 0.3s;
+                padding: 2rem;
+                z-index: 999;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .login-btn {
+                margin-left: 0;
+                margin-top: 15px;
+                width: 100%;
+            }
+            
+            .news-articles {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .logo {
+                width: 100%;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Логотип">
+                <span>Льготы РФ</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="benefits.html" class="nav-link active">Льготы</a></li>
+                    <li><a href="news.html" class="nav-link">Новости</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Раздел "FAQ" -->
+    <section class="faq-content">
+        <h2>Часто задаваемые вопросы</h2>
+        <details>
+            <summary>Какие льготы есть для пенсионеров?</summary>
+            <p>Пенсионеры могут получить льготы по оплате ЖКХ, транспортные льготы и дополнительные выплаты.</p>
+        </details>
+        <details>
+            <summary>Как оформить льготы на ЖКХ?</summary>
+            <p>Для оформления льгот на ЖКХ необходимо обратиться в местный орган социальной защиты.</p>
+        </details>
+        <details>
+            <summary>Какие документы нужны для получения льгот?</summary>
+            <p>Обычно требуются паспорт, пенсионное удостоверение и справка о доходах.</p>
+        </details>
+        <details>
+            <summary>Какие льготы есть для многодетных семей?</summary>
+            <p>Многодетные семьи могут получить льготы на жилье, транспорт и образование.</p>
+        </details>
+        <details>
+            <summary>Как получить льготы на лекарства?</summary>
+            <p>Для получения льгот на лекарства необходимо обратиться в поликлинику по месту жительства.</p>
+        </details>
+        <details>
+            <summary>Какие льготы есть для инвалидов?</summary>
+            <p>Инвалиды имеют право на бесплатное медицинское обслуживание, льготы на лекарства и транспорт.</p>
+        </details>
+        <details>
+            <summary>Как оформить льготы на транспорт?</summary>
+            <p>Для оформления льгот на транспорт необходимо обратиться в МФЦ.</p>
+        </details>
+        <details>
+            <summary>Какие льготы есть для студентов?</summary>
+            <p>Студенты могут получить скидки на проезд, льготы на жилье и стипендии.</p>
+        </details>
+        <details>
+            <summary>Как получить налоговые льготы?</summary>
+            <p>Для получения налоговых льгот необходимо обратиться в налоговую инспекцию.</p>
+        </details>
+        <details>
+            <summary>Какие льготы есть для ветеранов?</summary>
+            <p>Ветераны имеют право на льготы по оплате ЖКХ, медицинское обслуживание и дополнительные выплаты.</p>
+        </details>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 Льготы РФ</p>
+            <p>Телефон: 8-800-123-45-67</p>
+            <p>Email: info@lgoty-rf.ru</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Закрытие меню при клике на пункт (для мобильных)
+        document.querySelectorAll('#mainNav a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    mainNav.classList.remove('active');
+                }
+            });
+        });
+        
+        // Кнопка входа
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            alert('Функция входа в личный кабинет будет реализована позже');
+        });
+    </script>
+</body>
+</html>

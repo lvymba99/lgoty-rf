@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Льготы для студентов | Социальный портал</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f9ff;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #1a5fb4;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        nav ul li a.active {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+        
+        /* Герой-секция */
+        .student-hero {
+            background: linear-gradient(rgba(26, 95, 180, 0.8), rgba(26, 95, 180, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .student-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Секция льгот */
+        .benefits-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .benefit-content {
+            padding: 1.5rem;
+        }
+        
+        .benefit-content h3 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .apply-btn {
+            display: inline-block;
+            background-color: #1a5fb4;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: background-color 0.3s;
+        }
+        
+        .apply-btn:hover {
+            background-color: #134a8e;
+        }
+        
+        /* Калькулятор */
+        .student-calculator {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .student-calculator h3 {
+            color: #1a5fb4;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .calc-group {
+            margin-bottom: 1rem;
+        }
+        
+        .calc-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .calc-group input,
+        .calc-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .calc-btn {
+            background-color: #1a5fb4;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s;
+        }
+        
+        .calc-btn:hover {
+            background-color: #134a8e;
+        }
+        
+        .calc-result {
+            background: #f0f7ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: none;
+        }
+        
+        .calc-result h4 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1a5fb4;
+            margin: 0.5rem 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Аккордеон */
+        .accordion {
+            margin: 2rem 0;
+        }
+        
+        .accordion h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .accordion-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background-color: #f0f7ff;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .accordion-header:hover {
+            background-color: #e1efff;
+        }
+        
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5rem;
+        }
+        
+        .accordion-item.active .accordion-header::after {
+            content: '-';
+        }
+        
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-content {
+            padding: 1rem 1.5rem;
+            max-height: 1000px;
+        }
+        
+        /* Форма заявки */
+        .application-section {
+            margin: 2rem 0;
+        }
+        
+        .application-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #1a5fb4;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        footer .container {
+            max-width: 800px;
+        }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: #1a5fb4;
+                transition: left 0.3s;
+                padding: 2rem;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .student-hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .benefits-section h2,
+            .accordion h2,
+            .application-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .student-calculator {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .student-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calc-btn {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Студенческий портал</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="students.html" class="active">Студенты</a></li>
+                    <li><a href="pensioners.html">Пенсионеры</a></li>
+                    <li><a href="families.html">Семьи</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="student-hero">
+        <div class="container">
+            <h1>Льготы и поддержка для студентов</h1>
+            <p>Полный перечень мер поддержки и социальных программ для студентов</p>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <section class="benefits-section">
+            <h2>Доступные льготы для студентов</h2>
+            <div class="benefits-container">
+                <!-- Карточка льготы 1 -->
+                <div class="benefit-card">
+                    <img src="https://avatars.mds.yandex.net/get-altay/2405086/2a00000170ee0e235dc41c7af19b4c27c7fb/XXXL" alt="Общежитие">
+                    <div class="benefit-content">
+                        <h3>Льготное общежитие</h3>
+                        <p>Студенты из малообеспеченных семей имеют право на льготное заселение в общежитие.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 2 -->
+                <div class="benefit-card">
+                    <img src="https://i.timeout.ru/pix/567642.jpeg" alt="Проездной">
+                    <div class="benefit-content">
+                        <h3>Льготный проезд</h3>
+                        <p>Скидки на проезд в общественном транспорте от 30% до 100% в зависимости от региона.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 3 -->
+                <div class="benefit-card">
+                    <img src="https://tversu.ru/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ4Zm1peDc1cDNmN3Y5dmk1dXphdDBwbHhsaHFjIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiMTA5NzA0NjAuanBnXCI7IGZpbGVuYW1lKj1VVEYtOCcnMTA5NzA0NjAuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sInB1ciI6ImJsb2Jfa2V5In19--0a1f374df9f1e7f6d5a9a8687bccc0f991dc6327/10970460.jpg" alt="Стипендия">
+                    <div class="benefit-content">
+                        <h3>Социальная стипендия</h3>
+                        <p>Дополнительные выплаты для студентов из малообеспеченных семей и других льготных категорий.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 4 -->
+                <div class="benefit-card">
+                    <img src="https://i.vuzopedia.ru/storage/app/uploads/public/673/72e/9da/67372e9da8240610719327.jpg" alt="Медицина">
+                    <div class="benefit-content">
+                        <h3>Медицинское обслуживание</h3>
+                        <p>Бесплатное медицинское обслуживание в студенческих поликлиниках.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 5 -->
+                <div class="benefit-card">
+                    <img src="https://static.tildacdn.com/tild3138-3139-4938-b236-613763646434/EDkbZ7XWwAApZKe.jpg" alt="Библиотека">
+                    <div class="benefit-content">
+                        <h3>Библиотечные ресурсы</h3>
+                        <p>Бесплатный доступ к учебной литературе и электронным ресурсам.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 6 -->
+                <div class="benefit-card">
+                    <img src="https://avatars.dzeninfra.ru/get-zen_doc/8170504/pub_63f88c3e5003113bb6ba6a24_63f88c55303f1f5c2d5835bf/scale_1200" alt="Питание">
+                    <div class="benefit-content">
+                        <h3>Льготное питание</h3>
+                        <p>Субсидированные обеды в студенческих столовых для нуждающихся студентов.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Калькулятор стипендий -->
+        <section class="student-calculator">
+            <h3>Калькулятор студенческих льгот</h3>
+            <div class="calculator-grid">
+                <div class="calc-group">
+                    <label for="studentType">Тип обучения</label>
+                    <select id="studentType" required>
+                        <option value="">Выберите тип</option>
+                        <option value="budget">Бюджетная основа</option>
+                        <option value="contract">Контрактная основа</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="familyIncome">Доход семьи (руб. в месяц)</label>
+                    <input type="number" id="familyIncome" required placeholder="30000">
+                </div>
+                
+                <div class="calc-group">
+                    <label for="region">Регион обучения</label>
+                    <select id="region" required>
+                        <option value="Moscow">Ставрополь</option>
+                        <option value="SPB">Санкт-Петербург</option>
+                        <option value="other">Другой регион</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="disability">Инвалидность</label>
+                    <select id="disability">
+                        <option value="no">Нет</option>
+                        <option value="yes">Да</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="orphan">Сирота</label>
+                    <select id="orphan">
+                        <option value="no">Нет</option>
+                        <option value="yes">Да</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="success">Успеваемость</label>
+                    <select id="success">
+                        <option value="good">Хорошая</option>
+                        <option value="excellent">Отличная</option>
+                        <option value="satisfactory">Удовлетворительная</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="button" class="calc-btn" onclick="calculateBenefits()">Рассчитать льготы</button>
+            
+            <div id="benefitResult" class="calc-result">
+                <h4>Ваши возможные льготы:</h4>
+                <div id="benefitDetails"></div>
+                <div class="benefit-amount" id="benefitTotal">0 ₽</div>
+                <p>Сумма ежемесячных выплат</p>
+                <p><small>Это предварительный расчет. Точную информацию уточняйте в деканате.</small></p>
+            </div>
+        </section>
+        
+        <!-- Аккордеон с часто задаваемыми вопросами -->
+        <section class="accordion">
+            <h2>Часто задаваемые вопросы</h2>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как получить социальную стипендию?</div>
+                <div class="accordion-content">
+                    <p>Для получения социальной стипендии необходимо:</p>
+                    <ol>
+                        <li>Отнести документы, подтверждающие льготный статус, в деканат</li>
+                        <li>Написать заявление на имя ректора</li>
+                        <li>Предоставить справку о доходах семьи (для малоимущих)</li>
+                        <li>Дождаться решения стипендиальной комиссии</li>
+                    </ol>
+                    <p>Размер социальной стипендии устанавливается учебным заведением.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Какие документы нужны для льготного проезда?</div>
+                <div class="accordion-content">
+                    <p>Для оформления льготного проездного билета потребуются:</p>
+                    <ul>
+                        <li>Студенческий билет</li>
+                        <li>Паспорт</li>
+                        <li>Фотография 3×4</li>
+                        <li>Справка из деканата</li>
+                        <li>Для иногородних - регистрация в общежитии</li>
+                    </ul>
+                    <p>В некоторых регионах также требуется оплатить часть стоимости проездного.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Кто имеет право на льготное заселение в общежитие?</div>
+                <div class="accordion-content">
+                    <p>Преимущественное право на заселение имеют:</p>
+                    <ul>
+                        <li>Сироты и оставшиеся без попечения родителей</li>
+                        <li>Инвалиды I и II групп</li>
+                        <li>Студенты из многодетных семей</li>
+                        <li>Студенты из малоимущих семей</li>
+                        <li>Иногородние студенты</li>
+                    </ul>
+                    <p>Конкретные условия зависят от правил учебного заведения.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Какие налоговые льготы есть у студентов?</div>
+                <div class="accordion-content">
+                    <p>Студенты могут воспользоваться следующими налоговыми льготами:</p>
+                    <ul>
+                        <li>Налоговый вычет за обучение (до 15 600 руб. в год)</li>
+                        <li>Освобождение от НДФЛ для стипендий</li>
+                        <li>Льготы по транспортному налогу в некоторых регионах</li>
+                        <li>Льготы по оплате ЖКУ для проживающих в общежитиях</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как получить скидку на программное обеспечение?</div>
+                <div class="accordion-content">
+                    <p>Многие IT-компании предоставляют студентам бесплатные или льготные лицензии:</p>
+                    <ol>
+                        <li>Зарегистрируйтесь на образовательных порталах (Microsoft Imagine, GitHub Student и др.)</li>
+                        <li>Подтвердите статус студента (через учебную почту или скан студенческого)</li>
+                        <li>Скачайте и активируйте ПО по полученной лицензии</li>
+                    </ol>
+                    <p>Доступны такие продукты как Windows, Office, JetBrains IDE, AutoCAD и другие.</p>
+                </div>
+            </div>
+        </section>
+        
+    
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Льготы РФ</p>
+            <p>Горячая линия: 8-800-777-12-12</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Аккордеон
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+                
+                // Закрываем другие открытые элементы
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Калькулятор льгот
+        function calculateBenefits() {
+            // Получаем значения из формы
+            const studentType = document.getElementById('studentType').value;
+            const familyIncome = parseInt(document.getElementById('familyIncome').value) || 0;
+            const region = document.getElementById('region').value;
+            const disability = document.getElementById('disability').value === 'yes';
+            const orphan = document.getElementById('orphan').value === 'yes';
+            const success = document.getElementById('success').value;
+            
+            // Проверяем обязательные поля
+            if (!studentType) {
+                alert('Пожалуйста, укажите тип обучения');
+                return;
+            }
+            
+            // Расчет льгот (упрощенная логика)
+            let benefits = 0;
+            let details = [];
+            
+            // Базовые льготы
+            if (studentType === 'budget') {
+                benefits += 1500; // Минимальная академическая стипендия
+                details.push({ name: 'Академическая стипендия', amount: 1500 });
+            }
+            
+            // Социальные доплаты
+            if (familyIncome > 0 && familyIncome < 20000) {
+                benefits += 2500;
+                details.push({ name: 'Социальная стипендия', amount: 2500 });
+            }
+            
+            // Надбавки для инвалидов
+            if (disability) {
+                benefits += 3000;
+                details.push({ name: 'Доплата для студентов с инвалидностью', amount: 3000 });
+            }
+            
+            // Надбавки для сирот
+            if (orphan) {
+                benefits += 3500;
+                details.push({ name: 'Доплата для сирот', amount: 3500 });
+            }
+            
+            // Надбавки за успеваемость
+            if (success === 'excellent') {
+                benefits += 2000;
+                details.push({ name: 'Надбавка за отличную учебу', amount: 2000 });
+            } else if (success === 'good') {
+                benefits += 1000;
+                details.push({ name: 'Надбавка за хорошую учебу', amount: 1000 });
+            }
+            
+            // Региональные коэффициенты
+            if (region === 'Moscow') {
+                benefits += 1500;
+                details.push({ name: 'Ставропольская доплата', amount: 1500 });
+            } else if (region === 'SPB') {
+                benefits += 1200;
+                details.push({ name: 'Санкт-Петербургская доплата', amount: 1200 });
+            }
+            
+            // Показываем результаты
+            const resultDiv = document.getElementById('benefitResult');
+            const detailsDiv = document.getElementById('benefitDetails');
+            const totalDiv = document.getElementById('benefitTotal');
+            
+            detailsDiv.innerHTML = '';
+            details.forEach(item => {
+                detailsDiv.innerHTML += `<p>${item.name}: <strong>${item.amount.toLocaleString('ru-RU')} ₽</strong></p>`;
+            });
+            
+            totalDiv.textContent = Math.round(benefits).toLocaleString('ru-RU') + ' ₽';
+            resultDiv.style.display = 'block';
+            
+            // Прокручиваем к результатам
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

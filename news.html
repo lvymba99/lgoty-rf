@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости - Льготы РФ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f9ff;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #1a5fb4;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: opacity 0.3s;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        nav ul li a:hover {
+            background-color: rgba(255,255,255,0.15);
+        }
+        
+        .login-btn {
+            background-color: white;
+            color: #1a5fb4;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #f0f0f0;
+        }
+        /* Основное меню */
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .login-btn {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Мобильное меню */
+        .mobile-menu {
+            display: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .login-btn {
+                display: none;
+            }
+        }
+
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+        }
+        
+        /* Секция новостей */
+        .news-content h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .news-articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        article {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        article:hover {
+            transform: translateY(-5px);
+        }
+        
+        article img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .article-content {
+            padding: 20px;
+        }
+        
+        article h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #1a5fb4;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+        
+        footer p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: #1a5fb4;
+                transition: left 0.3s;
+                padding: 2rem;
+                z-index: 999;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .login-btn {
+                margin-left: 0;
+                margin-top: 15px;
+                width: 100%;
+            }
+            
+            .news-articles {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .logo {
+                width: 100%;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Логотип">
+                <span>Льготы РФ</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="benefits.html" class="nav-link active">Льготы</a></li>
+                    <li><a href="news.html" class="nav-link">Новости</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+   <!-- Основной контент -->
+   <main class="container">
+    <section class="news-content">
+        <h2>Последние новости о льготах</h2>
+        <div class="news-articles">
+            <article id="new-payments">
+                <div class="article-content">
+                    <h3>Новые выплаты для семей</h3>
+                    <p class="date">01.01.2025</p>
+                    <p>С 1 января 2025 года семьи с детьми до 7 лет могут оформить ежемесячное пособие в размере 12 500 рублей. Выплата назначается независимо от дохода семьи и заменяет часть существующих мер поддержки.</p>
+                </div>
+            </article>
+            
+            <article id="pension-changes">
+                <div class="article-content">
+                    <h3>Изменения в пенсионной системе</h3>
+                    <p class="date">01.04.2025</p>
+                    <p>С 1 апреля 2025 года пенсионеры с трудовым стажем от 40 лет получат ежемесячную доплату в размере 4 500 рублей. Нововведение коснётся как работающих, так и неработающих пенсионеров.</p>
+                </div>
+            </article>
+            
+            <article id="education-benefits">
+                <div class="article-content">
+                    <h3>Льготы на образование</h3>
+                    <p class="date">01.09.2025</p>
+                    <p>С 1 сентября 2025 года вступает в силу постановление Правительства РФ о значительном увеличении академических стипендий для студентов, обучающихся на "отлично".</p>
+                </div>
+            </article>
+            
+            <article id="medical-benefits">
+                <div class="article-content">
+                    <h3>Льготы на медицинское обслуживание</h3>
+                    <p class="date">01.07.2025</p>
+                    <p>С 1 июля 2025 года в России вступают в силу новые правила обеспечения льготными лекарствами. Теперь пациенты с хроническими заболеваниями смогут получать необходимые препараты на 3 месяца вперед по единому рецепту.</p>
+                </div>
+            </article>
+            
+            <article id="transport-benefits">
+                <div class="article-content">
+                    <h3>Транспортные льготы</h3>
+                    <p class="date">01.09.2025</p>
+                    <p>С 1 сентября 2025 года все льготные категории граждан смогут оформить новую универсальную транспортную карту, которая объединит все существующие льготы на проезд.</p>
+                </div>
+            </article>
+            
+            <article id="housing-benefits">
+                <div class="article-content">
+                    <h3>Жилищные льготы</h3>
+                    <p class="date">01.01.2023</p>
+                    <p>С 2025 года в России расширяется программа льготной ипотеки для семей с детьми и бюджетников</p>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Льготы РФ</p>
+            <p>Телефон: 8-800-777-12-12</p>
+            <p>Email: info@lgoty-rf.ru</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Закрытие меню при клике на пункт (для мобильных)
+        document.querySelectorAll('#mainNav a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    mainNav.classList.remove('active');
+                }
+            });
+        });
+        
+        // Кнопка входа
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            alert('Функция входа в личный кабинет будет реализована позже');
+        });
+    </script>
+</body>
+</html>

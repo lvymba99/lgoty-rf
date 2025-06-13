@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Льготы для молодых специалистов | Социальный портал</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f9ff;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #1a5fb4;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        nav ul li a.active {
+            font-weight: 700;
+            text-decoration: underline;
+        }
+        
+        /* Герой-секция */
+        .specialist-hero {
+            background: linear-gradient(rgba(26, 95, 180, 0.8), rgba(26, 95, 180, 0.9)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .specialist-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Секция льгот */
+        .benefits-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .benefit-content {
+            padding: 1.5rem;
+        }
+        
+        .benefit-content h3 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .apply-btn {
+            display: inline-block;
+            background-color: #1a5fb4;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: background-color 0.3s;
+        }
+        
+        .apply-btn:hover {
+            background-color: #005fa3;
+        }
+        
+        /* Калькулятор */
+        .specialist-calculator {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .specialist-calculator h3 {
+            color: #1a5fb4;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .calc-group {
+            margin-bottom: 1rem;
+        }
+        
+        .calc-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .calc-group input,
+        .calc-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .calc-btn {
+            background-color: #1a5fb4;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s;
+        }
+        
+        .calc-btn:hover {
+            background-color: #134a8e;
+        }
+        
+        .calc-result {
+            background: #e6f2ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: none;
+        }
+        
+        .calc-result h4 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1a5fb4;
+            margin: 0.5rem 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Аккордеон */
+        .accordion {
+            margin: 2rem 0;
+        }
+        
+        .accordion h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .accordion-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background-color: #f0f7ff;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .accordion-header:hover {
+            background-color: #e1efff;
+        }
+        
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5rem;
+        }
+        
+        .accordion-item.active .accordion-header::after {
+            content: '-';
+        }
+        
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-content {
+            padding: 1rem 1.5rem;
+            max-height: 1000px;
+        }
+        
+        /* Форма заявки */
+        .application-section {
+            margin: 2rem 0;
+        }
+        
+        .application-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #1a5fb4;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        footer .container {
+            max-width: 800px;
+        }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: #1a5fb4;
+                transition: left 0.3s;
+                padding: 2rem;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .specialist-hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .benefits-section h2,
+            .accordion h2,
+            .application-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .specialist-calculator {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .specialist-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calc-btn {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Молодые специалисты</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="specialists.html" class="active">Специалисты</a></li>
+                    <li><a href="teachers.html">Учителя</a></li>
+                    <li><a href="doctors.html">Врачи</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="specialist-hero">
+        <div class="container">
+            <h1>Льготы и поддержка для молодых специалистов</h1>
+            <p>Программы поддержки для выпускников вузов и колледжей в начале профессионального пути</p>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <section class="benefits-section">
+            <h2>Доступные льготы для молодых специалистов</h2>
+            <div class="benefits-container">
+                <!-- Карточка льготы 1 -->
+                <div class="benefit-card">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Подъемные выплаты">
+                    <div class="benefit-content">
+                        <h3>Подъемные выплаты</h3>
+                        <p>Единовременные выплаты при трудоустройстве от 50 до 200 тыс. рублей в зависимости от специальности.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                
+                <!-- Карточка льготы 3 -->
+                <div class="benefit-card">
+                    <img src="https://img.dmclk.ru/vitrina/owner/8e/aa/8eaa4a2047464f08ba4b4df5a3075211.jpg" alt="Жилье">
+                    <div class="benefit-content">
+                        <h3>Служебное жилье</h3>
+                        <p>Предоставление временного жилья на период работы в государственных учреждениях.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 4 -->
+                <div class="benefit-card">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Образование">
+                    <div class="benefit-content">
+                        <h3>Повышение квалификации</h3>
+                        <p>Бесплатные курсы повышения квалификации и профессиональной переподготовки.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Калькулятор выплат -->
+        <section class="specialist-calculator">
+            <h3>Калькулятор льгот для молодых специалистов</h3>
+            <div class="calculator-grid">
+                <div class="calc-group">
+                    <label for="specialty">Специальность</label>
+                    <select id="specialty" required>
+                        <option value="">Выберите специальность</option>
+                        <option value="teacher">Педагог</option>
+                        <option value="doctor">Медицинский работник</option>
+                        <option value="engineer">Инженер</option>
+                        <option value="agro">Агроном/Ветеринар</option>
+                        <option value="other">Другая специальность</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="education">Уровень образования</label>
+                    <select id="education" required>
+                        <option value="college">Среднее специальное</option>
+                        <option value="bachelor">Бакалавриат</option>
+                        <option value="master">Магистратура</option>
+                        <option value="phd">Аспирантура</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="region">Регион трудоустройства</label>
+                    <select id="region" required>
+                        <option value="city">Ставрополь</option>
+                        <option value="village">Санкт-Петербург</option>
+                        <option value="far_east">Дальний Восток</option>
+                        <option value="north">Крайний Север</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="experience">Опыт работы (лет)</label>
+                    <input type="number" id="experience" min="0" max="3" value="0">
+                </div>
+                
+                <div class="calc-group">
+                    <label for="employment">Тип трудоустройства</label>
+                    <select id="employment">
+                        <option value="state">Государственное учреждение</option>
+                        <option value="private">Частная компания</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="relocation">Переезд в другой регион</label>
+                    <select id="relocation">
+                        <option value="no">Нет</option>
+                        <option value="yes">Да</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="button" class="calc-btn" onclick="calculateSpecialistBenefits()">Рассчитать льготы</button>
+            
+            <div id="benefitResult" class="calc-result">
+                <h4>Ваши возможные льготы:</h4>
+                <div id="benefitDetails"></div>
+                <div class="benefit-amount" id="benefitTotal">0 ₽</div>
+                <p>Сумма единовременных и ежемесячных выплат</p>
+                <p><small>Это предварительный расчет. Точную информацию уточняйте в центре занятости.</small></p>
+            </div>
+        </section>
+        
+        <!-- Аккордеон с часто задаваемыми вопросами -->
+        <section class="accordion">
+            <h2>Часто задаваемые вопросы</h2>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Кто считается молодым специалистом?</div>
+                <div class="accordion-content">
+                    <p>Молодым специалистом считается выпускник:</p>
+                    <ul>
+                        <li>В возрасте до 30-35 лет (зависит от региона)</li>
+                        <li>Окончивший аккредитованное учебное заведение</li>
+                        <li>Трудоустроившийся по специальности в течение 1 года после выпуска</li>
+                        <li>Впервые работающий по полученной специальности</li>
+                    </ul>
+                    <p>Статус сохраняется от 1 до 3 лет в зависимости от программы поддержки.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как оформить подъемные выплаты?</div>
+                <div class="accordion-content">
+                    <p>Для получения подъемных выплат необходимо:</p>
+                    <ol>
+                        <li>Заключить трудовой договор с работодателем</li>
+                        <li>Подготовить документы (диплом, трудовую книжку, паспорт)</li>
+                        <li>Написать заявление в отделе кадров или в органах соцзащиты</li>
+                        <li>Дождаться перечисления средств (срок - до 3 месяцев)</li>
+                    </ol>
+                    <p>Размер выплат зависит от специальности и региона трудоустройства.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как получить льготную ипотеку?</div>
+                <div class="accordion-content">
+                    <p>Условия получения льготной ипотеки:</p>
+                    <ul>
+                        <li>Статус молодого специалиста</li>
+                        <li>Трудоустройство в государственном учреждении</li>
+                        <li>Наличие первоначального взноса (от 10%)</li>
+                        <li>Отсутствие другой недвижимости в собственности</li>
+                    </ul>
+                    <p>Для оформления обратитесь в банки-участники программы (Сбербанк, ВТБ, ДОМ.РФ).</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Какие налоговые льготы есть у молодых специалистов?</div>
+                <div class="accordion-content">
+                    <p>Молодые специалисты могут воспользоваться:</p>
+                    <ul>
+                        <li>Освобождением от НДФЛ на первые 2 года работы (для педагогов и медиков)</li>
+                        <li>Увеличенным налоговым вычетом при покупке жилья</li>
+                        <li>Льготами по транспортному налогу в некоторых регионах</li>
+                        <li>Освобождением от налога на имущество для первого жилья</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как получить служебное жилье?</div>
+                <div class="accordion-content">
+                    <p>Порядок получения служебного жилья:</p>
+                    <ol>
+                        <li>Трудоустройство в государственное учреждение, предоставляющее жилье</li>
+                        <li>Подача заявления на имя руководителя организации</li>
+                        <li>Предоставление документов о составе семьи</li>
+                        <li>Ожидание очереди (льготы имеют сельские специалисты)</li>
+                    </ol>
+                    <p>Жилье предоставляется на период работы в организации.</p>
+                </div>
+            </div>
+        </section>
+        
+       
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Льготы РФ</p>
+            <p>Горячая линия: 8-800-777-12-12</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Аккордеон
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+                
+                // Закрываем другие открытые элементы
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Калькулятор льгот
+        function calculateSpecialistBenefits() {
+            // Получаем значения из формы
+            const specialty = document.getElementById('specialty').value;
+            const education = document.getElementById('education').value;
+            const region = document.getElementById('region').value;
+            const experience = parseInt(document.getElementById('experience').value) || 0;
+            const employment = document.getElementById('employment').value;
+            const relocation = document.getElementById('relocation').value === 'yes';
+            
+            // Проверяем обязательные поля
+            if (!specialty) {
+                alert('Пожалуйста, укажите специальность');
+                return;
+            }
+            
+            // Расчет льгот (упрощенная логика)
+            let benefits = 0;
+            let details = [];
+            
+            // Базовые выплаты по специальностям
+            if (specialty === 'teacher') {
+                benefits += 100000;
+                details.push({ name: 'Подъемные для педагогов', amount: 100000 });
+            } else if (specialty === 'doctor') {
+                benefits += 150000;
+                details.push({ name: 'Подъемные для медиков', amount: 150000 });
+            } else if (specialty === 'engineer') {
+                benefits += 80000;
+                details.push({ name: 'Подъемные для инженеров', amount: 80000 });
+            } else if (specialty === 'agro') {
+                benefits += 120000;
+                details.push({ name: 'Подъемные для аграриев', amount: 120000 });
+            } else {
+                benefits += 50000;
+                details.push({ name: 'Базовые подъемные', amount: 50000 });
+            }
+            
+            // Надбавки за образование
+            if (education === 'bachelor') {
+                benefits += 20000;
+                details.push({ name: 'Надбавка за высшее образование', amount: 20000 });
+            } else if (education === 'master') {
+                benefits += 30000;
+                details.push({ name: 'Надбавка за магистратуру', amount: 30000 });
+            } else if (education === 'phd') {
+                benefits += 50000;
+                details.push({ name: 'Надбавка за аспирантуру', amount: 50000 });
+            }
+            
+            // Региональные коэффициенты
+            if (region === 'village') {
+                benefits += 70000;
+                details.push({ name: 'Ставропольская надбавка', amount: 70000 });
+            } else if (region === 'sity') {
+                benefits += 100000;
+                details.push({ name: 'Дальневосточная надбавка', amount: 100000 });
+            } else if (region === 'north') {
+                benefits += 120000;
+                details.push({ name: 'Северная надбавка', amount: 120000 });
+            }
+            
+            // Надбавки за тип трудоустройства
+            if (employment === 'state') {
+                benefits += 30000;
+                details.push({ name: 'Надбавка за госслужбу', amount: 30000 });
+            }
+            
+            // Компенсация за переезд
+            if (relocation) {
+                benefits += 50000;
+                details.push({ name: 'Компенсация за переезд', amount: 50000 });
+            }
+            
+            // Показываем результаты
+            const resultDiv = document.getElementById('benefitResult');
+            const detailsDiv = document.getElementById('benefitDetails');
+            const totalDiv = document.getElementById('benefitTotal');
+            
+            detailsDiv.innerHTML = '';
+            details.forEach(item => {
+                detailsDiv.innerHTML += `<p>${item.name}: <strong>${item.amount.toLocaleString('ru-RU')} ₽</strong></p>`;
+            });
+            
+            totalDiv.textContent = Math.round(benefits).toLocaleString('ru-RU') + ' ₽';
+            resultDiv.style.display = 'block';
+            
+            // Прокручиваем к результатам
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

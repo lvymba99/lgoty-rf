@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Льготы для пенсионеров | Социальный портал</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f9ff;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #1a5fb4;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Герой-секция */
+        .pension-hero {
+            background: linear-gradient(rgba(26, 95, 180, 0.8), rgba(26, 95, 180, 0.9)), url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .pension-hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Секция льгот */
+        .benefits-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .benefit-content {
+            padding: 1.5rem;
+        }
+        
+        .benefit-content h3 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .apply-btn {
+            display: inline-block;
+            background-color: #1a5fb4;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: background-color 0.3s;
+        }
+        
+        .apply-btn:hover {
+            background-color: #134a8e;
+        }
+        
+        /* Калькулятор */
+        .pension-calculator {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+        
+        .pension-calculator h3 {
+            color: #1a5fb4;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .calc-group {
+            margin-bottom: 1rem;
+        }
+        
+        .calc-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .calc-group input,
+        .calc-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .calc-btn {
+            background-color: #1a5fb4;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s;
+        }
+        
+        .calc-btn:hover {
+            background-color: #134a8e;
+        }
+        
+        .calc-result {
+            background: #f0f7ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+            display: none;
+        }
+        
+        .calc-result h4 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .pension-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1a5fb4;
+            margin: 0.5rem 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Аккордеон */
+        .accordion {
+            margin: 2rem 0;
+        }
+        
+        .accordion h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .accordion-item {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+        }
+        
+        .accordion-header {
+            background-color: #f0f7ff;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .accordion-header:hover {
+            background-color: #e1efff;
+        }
+        
+        .accordion-header::after {
+            content: '+';
+            font-size: 1.5rem;
+        }
+        
+        .accordion-item.active .accordion-header::after {
+            content: '-';
+        }
+        
+        .accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-content {
+            padding: 1rem 1.5rem;
+            max-height: 1000px;
+        }
+        
+        /* Форма заявки */
+        .application-section {
+            margin: 2rem 0;
+        }
+        
+        .application-section h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #1a5fb4;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        footer .container {
+            max-width: 800px;
+        }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: #1a5fb4;
+                transition: left 0.3s;
+                padding: 2rem;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 1rem 0;
+            }
+            
+            .pension-hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .benefits-section h2,
+            .accordion h2,
+            .application-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .pension-calculator {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .pension-hero {
+                padding: 3rem 1rem;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calc-btn {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Социальный портал</div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="pensioners.html" class="active">Пенсионеры</a></li>
+                    <li><a href="families.html">Семьи</a></li>
+                    <li><a href="disabled.html">Люди с ОВЗ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Герой-секция -->
+    <section class="pension-hero">
+        <div class="container">
+            <h1>Льготы и пособия для пенсионеров</h1>
+            <p>Полный перечень мер поддержки и социальных программ</p>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <section class="benefits-section">
+            <h2>Доступные льготы</h2>
+            <div class="benefits-container">
+                <!-- Карточка льготы 1 -->
+                <div class="benefit-card">
+                    <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Коммунальные льготы">
+                    <div class="benefit-content">
+                        <h3>Субсидии на ЖКУ</h3>
+                        <p>Компенсация до 50% расходов на коммунальные услуги для пенсионеров с доходом ниже прожиточного минимума.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 2 -->
+                <div class="benefit-card">
+                    <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Медицинские льготы">
+                    <div class="benefit-content">
+                        <h3>Бесплатные лекарства</h3>
+                        <p>Обеспечение льготными лекарственными препаратами по рецепту врача.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+                
+                <!-- Карточка льготы 3 -->
+                <div class="benefit-card">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Транспортные льготы">
+                    <div class="benefit-content">
+                        <h3>Проездные билеты</h3>
+                        <p>Бесплатный проезд в городском транспорте для пенсионеров старше 70 лет.</p>
+                        <a href="https://www.gosuslugi.ru/" class="apply-btn">Подать заявку</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Калькулятор пенсионных пособий -->
+        <section class="pension-calculator">
+            <h3>Калькулятор пенсионных пособий</h3>
+            <div class="calculator-grid">
+                <div class="calc-group">
+                    <label for="pensionType">Тип пенсии</label>
+                    <select id="pensionType" required>
+                        <option value="">Выберите тип</option>
+                        <option value="old">По старости</option>
+                        <option value="disability">По инвалидности</option>
+                        <option value="loss">По потере кормильца</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="pensionAge">Возраст</label>
+                    <input type="number" id="pensionAge" required placeholder="65">
+                </div>
+                
+                <div class="calc-group">
+                    <label for="workExperience">Стаж (лет)</label>
+                    <input type="number" id="workExperience" required placeholder="30">
+                </div>
+                
+                <div class="calc-group">
+                    <label for="avgSalary">Средняя зарплата (руб.)</label>
+                    <input type="number" id="avgSalary" required placeholder="30000">
+                </div>
+                
+                <div class="calc-group">
+                    <label for="region">Регион проживания</label>
+                    <select id="region" required>
+                        <option value="Moscow">Ставрополь</option>
+                        <option value="MO">Московская область</option>
+                        <option value="SPB">Санкт-Петербург</option>
+                        <option value="other">Другой регион</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="dependents">Иждивенцы</label>
+                    <select id="dependents">
+                        <option value="0">Нет</option>
+                        <option value="1">1 человек</option>
+                        <option value="2">2 человека</option>
+                        <option value="3">3 и более</option>
+                    </select>
+                </div>
+                
+                <div class="calc-group">
+                    <label for="disabilityGroup">Группа инвалидности (если есть)</label>
+                    <select id="disabilityGroup">
+                        <option value="no">Нет</option>
+                        <option value="1">1 группа</option>
+                        <option value="2">2 группа</option>
+                        <option value="3">3 группа</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="button" class="calc-btn" onclick="calculatePension()">Рассчитать пенсию</button>
+            
+            <div id="pensionResult" class="calc-result">
+                <h4>Ваша предполагаемая пенсия:</h4>
+                <div id="pensionDetails"></div>
+                <div class="pension-amount" id="pensionTotal">0 ₽</div>
+                <p>Ежемесячная выплата с учетом всех доплат</p>
+                <p><small>Это предварительный расчет. Точную сумму можно узнать в Пенсионном фонде.</small></p>
+            </div>
+        </section>
+        
+        <!-- Аккордеон с часто задаваемыми вопросами -->
+        <section class="accordion">
+            <h2>Часто задаваемые вопросы</h2>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как оформить пенсию по старости?</div>
+                <div class="accordion-content">
+                    <p>Для оформления пенсии по старости необходимо обратиться в Пенсионный фонд РФ или МФЦ со следующими документами:</p>
+                    <ul>
+                        <li>Паспорт</li>
+                        <li>СНИЛС</li>
+                        <li>Трудовая книжка или документы, подтверждающие стаж</li>
+                        <li>Справка о среднемесячном заработке</li>
+                        <li>Реквизиты банковского счета</li>
+                    </ul>
+                    <p>Подать заявление можно также через портал Госуслуг.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Какие льготы положены пенсионерам?</div>
+                <div class="accordion-content">
+                    <p>Основные льготы для пенсионеров включают:</p>
+                    <ul>
+                        <li>Скидка 50% на оплату ЖКУ</li>
+                        <li>Бесплатный проезд в городском транспорте</li>
+                        <li>Льготные лекарства по рецепту врача</li>
+                        <li>Налоговые льготы на имущество</li>
+                        <li>Скидки на междугородний транспорт</li>
+                        <li>Бесплатное зубопротезирование</li>
+                    </ul>
+                    <p>Конкретный перечень зависит от региона проживания.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как получить доплату к пенсии?</div>
+                <div class="accordion-content">
+                    <p>Доплаты к пенсии бывают нескольких видов:</p>
+                    <ol>
+                        <li><strong>Федеральная социальная доплата</strong> - если пенсия ниже прожиточного минимума</li>
+                        <li><strong>Региональная доплата</strong> - устанавливается субъектами РФ</li>
+                        <li><strong>За иждивенцев</strong> - при наличии нетрудоспособных членов семьи</li>
+                        <li><strong>Северные надбавки</strong> - для работавших в районах Крайнего Севера</li>
+                    </ol>
+                    <p>Для оформления обратитесь в ПФР с соответствующими документами.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как перевести пенсию на карту?</div>
+                <div class="accordion-content">
+                    <p>Для перевода пенсии на банковскую карту:</p>
+                    <ol>
+                        <li>Откройте счет в любом банке</li>
+                        <li>Подайте заявление в ПФР или через Госуслуги</li>
+                        <li>Укажите реквизиты карты (не обязательно номер, достаточно расчетного счета)</li>
+                        <li>Дождитесь перевода средств (обычно с следующего месяца)</li>
+                    </ol>
+                    <p>Пенсия может зачисляться на карту "Мир" или любую другую.</p>
+                </div>
+            </div>
+            
+            <div class="accordion-item">
+                <div class="accordion-header">Как получить льготные лекарства?</div>
+                <div class="accordion-content">
+                    <p>Порядок получения льготных лекарств:</p>
+                    <ol>
+                        <li>Посетите врача для получения рецепта</li>
+                        <li>Убедитесь, что лекарство входит в льготный перечень</li>
+                        <li>Обратитесь в аптеку, участвующую в программе</li>
+                        <li>Предъявите рецепт, паспорт и СНИЛС</li>
+                    </ol>
+                    <p>Если лекарства нет в наличии, аптека обязана заказать его в течение 10 дней.</p>
+                </div>
+            </div>
+        </section>
+        
+    
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Льготы РФ</p>
+            <p>Горячая линия: 8-800-777-12-12</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // Аккордеон
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('active');
+                
+                // Закрываем другие открытые элементы
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Калькулятор пенсии
+        function calculatePension() {
+            // Получаем значения из формы
+            const pensionType = document.getElementById('pensionType').value;
+            const age = parseInt(document.getElementById('pensionAge').value) || 0;
+            const experience = parseInt(document.getElementById('workExperience').value) || 0;
+            const salary = parseInt(document.getElementById('avgSalary').value) || 0;
+            const region = document.getElementById('region').value;
+            const dependents = parseInt(document.getElementById('dependents').value) || 0;
+            const disabilityGroup = document.getElementById('disabilityGroup').value;
+            
+            // Проверяем обязательные поля
+            if (!pensionType) {
+                alert('Пожалуйста, выберите тип пенсии');
+                return;
+            }
+            
+            // Расчет пенсии (упрощенная логика)
+            let pension = 0;
+            let details = [];
+            
+            // Базовая часть
+            if (pensionType === 'old') {
+                pension = 12000; // Фиксированная выплата
+                details.push({ name: 'Фиксированная выплата', amount: 12000 });
+                
+                // Страховая часть
+                const insurancePart = Math.min(experience, 30) * salary * 0.01;
+                pension += insurancePart;
+                details.push({ name: 'Страховая часть', amount: Math.round(insurancePart) });
+            } 
+            else if (pensionType === 'disability') {
+                pension = 10000; // База
+                details.push({ name: 'Базовая выплата', amount: 10000 });
+                
+                // Надбавки по группе
+                if (disabilityGroup === '1') {
+                    pension += 5000;
+                    details.push({ name: 'Надбавка за 1 группу', amount: 5000 });
+                } else if (disabilityGroup === '2') {
+                    pension += 3000;
+                    details.push({ name: 'Надбавка за 2 группу', amount: 3000 });
+                } else if (disabilityGroup === '3') {
+                    pension += 2000;
+                    details.push({ name: 'Надбавка за 3 группу', amount: 2000 });
+                }
+            }
+            else if (pensionType === 'loss') {
+                pension = 8000; // База
+                details.push({ name: 'Базовая выплата', amount: 8000 });
+            }
+            
+            // Надбавки за иждивенцев
+            if (dependents > 0) {
+                const dependentBonus = dependents * 2000;
+                pension += dependentBonus;
+                details.push({ name: `Надбавка за ${dependents} иждивенцев`, amount: dependentBonus });
+            }
+            
+            // Региональные коэффициенты
+            if (region === 'Moscow') {
+                pension += 2000;
+                details.push({ name: 'Ставропольская доплата', amount: 2000 });
+            } else if (region === 'SPB') {
+                pension += 1500;
+                details.push({ name: 'Санкт-Петербургская доплата', amount: 1500 });
+            }
+            
+            // Социальная доплата (если пенсия маленькая)
+            if (pension < 15000) {
+                const socialBonus = 15000 - pension;
+                pension += socialBonus;
+                details.push({ name: 'Социальная доплата', amount: socialBonus });
+            }
+            
+            // Показываем результаты
+            const resultDiv = document.getElementById('pensionResult');
+            const detailsDiv = document.getElementById('pensionDetails');
+            const totalDiv = document.getElementById('pensionTotal');
+            
+            detailsDiv.innerHTML = '';
+            details.forEach(item => {
+                detailsDiv.innerHTML += `<p>${item.name}: <strong>${item.amount.toLocaleString('ru-RU')} ₽</strong></p>`;
+            });
+            
+            totalDiv.textContent = Math.round(pension).toLocaleString('ru-RU') + ' ₽';
+            resultDiv.style.display = 'block';
+            
+            // Прокручиваем к результатам
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

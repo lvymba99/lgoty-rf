@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная - Льготы РФ</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans&display=swap">
+    <style>
+        /* Базовые стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #1a5fb4;
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .logo img {
+            margin-right: 10px;
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            transition: opacity 0.3s;
+        }
+        
+        .nav-link:hover {
+            opacity: 0.8;
+        }
+        
+        .login-btn {
+            background-color: #fff;
+            color: #1a5fb4;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .login-btn:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Поиск */
+        .search-container {
+            position: relative;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        #searchInput {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        #searchResults {
+            position: absolute;
+            width: 100%;
+            max-height: 400px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+            z-index: 100;
+            display: none;
+        }
+        
+        .search-result-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        
+        .search-result-item:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .search-result-item h3 {
+            color: #1a5fb4;
+            margin-bottom: 5px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .search-result-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .no-results {
+            padding: 15px;
+            color: #666;
+            text-align: center;
+        }
+        
+        /* Блок "Узнайте о льготах" */
+        .benefits-checker {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 40px 20px;
+            background-color: #1a5fb4;
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefits-checker::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="rgba(255,255,255,0.1)"><path d="M50 0L100 50L50 100L0 50Z"/></svg>') no-repeat;
+            background-size: contain;
+        }
+        
+        .benefits-checker h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .benefits-checker p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .check-benefits-btn {
+            background-color: white;
+            color: #1a5fb4;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .check-benefits-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Тест на льготы */
+        .benefits-test {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .benefits-test.active {
+            display: block;
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .test-header h2 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+        
+        .test-header p {
+            color: #666;
+        }
+        
+        .test-progress {
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .test-progress-bar {
+            height: 100%;
+            background: #1a5fb4;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .test-question {
+            margin-bottom: 30px;
+            display: none;
+        }
+        
+        .test-question.active {
+            display: block;
+        }
+        
+        .test-question h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .test-options {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .test-option {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .test-option:hover {
+            border-color: #1a5fb4;
+            background: #f0f7ff;
+        }
+        
+        .test-option.selected {
+            border-color: #1a5fb4;
+            background: #e1f0ff;
+        }
+        
+        .test-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .test-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .test-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .test-prev {
+            background: #f0f0f0;
+        }
+        
+        .test-next {
+            background: #1a5fb4;
+            color: white;
+        }
+        
+        .test-results {
+            display: none;
+            text-align: center;
+        }
+        
+        .test-results.active {
+            display: block;
+        }
+        
+        .test-results h2 {
+            color: #1a5fb4;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+        }
+        
+        .benefits-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .benefit-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #1a5fb4;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .benefit-item h3 {
+            color: #1a5fb4;
+            margin-bottom: 5px;
+        }
+        
+        .restart-test {
+            background: #1a5fb4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        /* Категории */
+        .categories {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .categories h2 {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #1a5fb4;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        .category-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card h3 {
+            color: #1a5fb4;
+            padding: 15px 15px 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .card p {
+            padding: 10px 15px 20px;
+            color: #666;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #1a5fb4;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background: #1a5fb4;
+                transition: left 0.3s;
+                padding: 20px;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .benefits-checker h2 {
+                font-size: 1.5rem;
+            }
+            
+            .benefits-checker p {
+                font-size: 1rem;
+            }
+            
+            .benefits-checker::before {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .benefits-test {
+                padding: 20px;
+            }
+            
+            .test-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Логотип Льготы РФ" width="40">
+                <span>Льготы РФ</span>
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Главная</a></li>
+                    <li><a href="benefits.html" class="nav-link">Льготы</a></li>
+                    <li><a href="news.html" class="nav-link">Новости</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contacts.html" class="nav-link">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Поиск по сайту -->
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Поиск по льготам, новостям, FAQ...">
+        <div id="searchResults"></div>
+    </div>
+
+    <!-- Блок "Узнайте о льготах" -->
+    <section class="benefits-checker">
+        <h2>Узнайте о своих льготах за 5 минут</h2>
+        <p>Пройдите простой тест и получите персональный список доступных вам льгот и пособий от государства</p>
+        <button class="check-benefits-btn" id="startTestBtn">Проверить льготы</button>
+    </section>
+
+    <!-- Тест на льготы -->
+    <div class="benefits-test" id="benefitsTest">
+        <div class="test-header">
+            <h2>Тест на определение льгот</h2>
+            <p>Ответьте на несколько вопросов, чтобы узнать, какие льготы вам положены</p>
+        </div>
+        
+        <div class="test-progress">
+            <div class="test-progress-bar" id="testProgress"></div>
+        </div>
+        
+        <!-- Вопросы теста -->
+        <div class="test-question active" id="question1">
+            <h3>1. Какая у вас возрастная категория?</h3>
+            <div class="test-options">
+                <div class="test-option" data-value="pensioner">Пенсионер (женщины от 55 лет, мужчины от 60 лет)</div>
+                <div class="test-option" data-value="adult">Взрослый трудоспособный возраст</div>
+                <div class="test-option" data-value="student">Студент или учащийся</div>
+                <div class="test-option" data-value="child">Ребенок до 18 лет</div>
+            </div>
+            <div class="test-navigation">
+                <button class="test-btn test-prev" disabled>Назад</button>
+                <button class="test-btn test-next" disabled>Далее</button>
+            </div>
+        </div>
+        
+        <div class="test-question" id="question2">
+            <h3>2. Имеете ли вы инвалидность?</h3>
+            <div class="test-options">
+                <div class="test-option" data-value="disabled1">1 группа</div>
+                <div class="test-option" data-value="disabled2">2 группа</div>
+                <div class="test-option" data-value="disabled3">3 группа</div>
+                <div class="test-option" data-value="no">Нет инвалидности</div>
+            </div>
+            <div class="test-navigation">
+                <button class="test-btn test-prev">Назад</button>
+                <button class="test-btn test-next" disabled>Далее</button>
+            </div>
+        </div>
+        
+        <div class="test-question" id="question3">
+            <h3>3. Есть ли у вас дети?</h3>
+            <div class="test-options">
+                <div class="test-option" data-value="many">3 и более детей</div>
+                <div class="test-option" data-value="two">1-2 ребенка</div>
+                <div class="test-option" data-value="pregnant">Беременность</div>
+                <div class="test-option" data-value="no">Нет детей</div>
+            </div>
+            <div class="test-navigation">
+                <button class="test-btn test-prev">Назад</button>
+                <button class="test-btn test-next" disabled>Далее</button>
+            </div>
+        </div>
+        
+        <div class="test-question" id="question4">
+            <h3>4. Ваш доход ниже прожиточного минимума?</h3>
+            <div class="test-options">
+                <div class="test-option" data-value="yes">Да, ниже</div>
+                <div class="test-option" data-value="no">Нет, выше</div>
+                <div class="test-option" data-value="dontknow">Не знаю</div>
+            </div>
+            <div class="test-navigation">
+                <button class="test-btn test-prev">Назад</button>
+                <button class="test-btn test-next" disabled>Далее</button>
+            </div>
+        </div>
+        
+        <div class="test-question" id="question5">
+            <h3>5. Участвовали ли вы в боевых действиях?</h3>
+            <div class="test-options">
+                <div class="test-option" data-value="veteran">Ветеран боевых действий</div>
+                <div class="test-option" data-value="family">Член семьи ветерана</div>
+                <div class="test-option" data-value="no">Нет</div>
+            </div>
+            <div class="test-navigation">
+                <button class="test-btn test-prev">Назад</button>
+                <button class="test-btn test-next" disabled>Далее</button>
+            </div>
+        </div>
+        
+        <!-- Результаты теста -->
+        <div class="test-results" id="testResults">
+            <h2>Вам могут быть доступны следующие льготы:</h2>
+            <div class="benefits-list" id="benefitsList">
+                <!-- Сюда будут добавляться льготы -->
+            </div>
+            <button class="restart-test" id="restartTestBtn">Пройти тест заново</button>
+        </div>
+    </div>
+
+    <!-- Раздел "Популярные категории" -->
+    <section class="categories">
+        <h2>Популярные категории</h2>
+        <div class="category-cards">
+            <a href="pensioners.html" class="card-link">
+                <div class="card">
+                    <img src="https://pressaufa.ru/wp-content/uploads/2022/05/oteldlyapojilykhlude-585x390.jpg" alt="Пенсионеры">
+                    <h3>Пенсионеры</h3>
+                    <p>Льготы и пособия для пенсионеров.</p>
+                </div>
+            </a>
+            
+            <a href="families.html" class="card-link">
+                <div class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Happy_family_(1).jpg" alt="Семьи с детьми">
+                    <h3>Семьи с детьми</h3>
+                    <p>Поддержка для семей.</p>
+                </div>
+            </a>
+            
+            <a href="disabled.html" class="card-link">
+                <div class="card">
+                    <img src="https://avatars.mds.yandex.net/i?id=ec8fcd311df494d3595a4b7cb64da0fc_l-5288655-images-thumbs&n=13" alt="Инвалиды">
+                    <h3>Люди с ОВЗ</h3>
+                    <p>Программы для людей с ограниченными возможностями.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 Льготы РФ</p>
+            <p>Телефон: 8-800-777-12-12</p>
+            <p>Email: info@lgoty-rf.ru</p>
+        </div>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+        
+        // База данных для поиска (в реальном проекте это будет API запрос)
+        const searchData = [
+            {
+                title: "Льготы для пенсионеров",
+                description: "Информация о всех доступных льготах для пенсионеров",
+                url: "pensioners.html",
+                keywords: "пенсионеры, льготы, выплаты, пособия"
+            },
+            {
+                title: "Льготы для семей с детьми",
+                description: "Поддержка для семей с детьми: пособия, налоговые вычеты",
+                url: "families.html",
+                keywords: "семьи, дети, пособия, выплаты"
+            },
+            {
+                title: "Льготы для людей с ОВЗ",
+                description: "Программы поддержки для людей с ограниченными возможностями",
+                url: "disabled.html",
+                keywords: "инвалиды, овз, льготы, поддержка"
+            },
+            {
+                title: "Новости о льготах",
+                description: "Последние новости и изменения в законодательстве о льготах",
+                url: "news.html",
+                keywords: "новости, изменения, законы"
+            },
+            {
+                title: "Часто задаваемые вопросы",
+                description: "Ответы на популярные вопросы о льготах",
+                url: "faq.html",
+                keywords: "faq, вопросы, ответы"
+            }
+        ];
+        
+        // Поиск
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+            
+            const results = searchData.filter(item => {
+                return item.title.toLowerCase().includes(query) || 
+                       item.description.toLowerCase().includes(query) ||
+                       item.keywords.toLowerCase().includes(query);
+            });
+            
+            displayResults(results);
+        });
+        
+        function displayResults(results) {
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="no-results">Ничего не найдено</div>';
+                searchResults.style.display = 'block';
+                return;
+            }
+            
+            let html = '';
+            results.forEach(item => {
+                html += `
+                    <a href="${item.url}" class="search-result-item">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                    </a>
+                `;
+            });
+            
+            searchResults.innerHTML = html;
+            searchResults.style.display = 'block';
+        }
+        
+        // Закрытие результатов поиска при клике вне поля
+        document.addEventListener('click', function(e) {
+            if (e.target !== searchInput) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Тест на льготы
+        const startTestBtn = document.getElementById('startTestBtn');
+        const benefitsTest = document.getElementById('benefitsTest');
+        const testProgress = document.getElementById('testProgress');
+        const restartTestBtn = document.getElementById('restartTestBtn');
+        const benefitsList = document.getElementById('benefitsList');
+        
+        // Показать тест при нажатии на кнопку
+        startTestBtn.addEventListener('click', function() {
+            benefitsTest.style.display = 'block';
+            document.querySelector('.benefits-checker').style.display = 'none';
+            window.scrollTo({
+                top: benefitsTest.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Вопросы теста
+        const questions = document.querySelectorAll('.test-question');
+        let currentQuestion = 0;
+        const totalQuestions = questions.length - 1; // -1 потому что последний "вопрос" - это результаты
+        const answers = {};
+        
+        // Инициализация теста
+        function initTest() {
+            // Показать первый вопрос
+            showQuestion(currentQuestion);
+            
+            // Назначить обработчики для вариантов ответов
+            document.querySelectorAll('.test-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Убрать выделение у всех вариантов в текущем вопросе
+                    this.parentNode.querySelectorAll('.test-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Выделить выбранный вариант
+                    this.classList.add('selected');
+                    
+                    // Активировать кнопку "Далее"
+                    const nextBtn = this.closest('.test-question').querySelector('.test-next');
+                    nextBtn.disabled = false;
+                    
+                    // Сохранить ответ
+                    const questionId = this.closest('.test-question').id;
+                    answers[questionId] = this.getAttribute('data-value');
+                });
+            });
+            
+            // Назначить обработчики для кнопок навигации
+            document.querySelectorAll('.test-prev').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (currentQuestion > 0) {
+                        currentQuestion--;
+                        showQuestion(currentQuestion);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('.test-next').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (currentQuestion < totalQuestions) {
+                        currentQuestion++;
+                        showQuestion(currentQuestion);
+                        
+                        // Если это последний вопрос, показать результаты
+                        if (currentQuestion === totalQuestions) {
+                            showResults();
+                        }
+                    }
+                });
+            });
+            
+            // Обработчик кнопки "Пройти заново"
+            restartTestBtn.addEventListener('click', function() {
+                // Сбросить тест
+                currentQuestion = 0;
+                for (let key in answers) {
+                    delete answers[key];
+                }
+                
+                // Скрыть результаты и показать первый вопрос
+                document.getElementById('testResults').classList.remove('active');
+                showQuestion(currentQuestion);
+                
+                // Прокрутить к началу теста
+                window.scrollTo({
+                    top: benefitsTest.offsetTop,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Показать вопрос
+        function showQuestion(index) {
+            // Скрыть все вопросы
+            questions.forEach(question => {
+                question.classList.remove('active');
+            });
+            
+            // Показать текущий вопрос
+            questions[index].classList.add('active');
+            
+            // Обновить прогресс
+            updateProgress(index + 1);
+            
+            // Прокрутить к вопросу
+            window.scrollTo({
+                top: questions[index].offsetTop - 20,
+                behavior: 'smooth'
+            });
+            
+            // Управление кнопками навигации
+            const prevBtns = document.querySelectorAll('.test-prev');
+            const nextBtns = document.querySelectorAll('.test-next');
+            
+            prevBtns.forEach(btn => {
+                btn.disabled = index === 0;
+            });
+            
+            nextBtns.forEach(btn => {
+                const questionId = btn.closest('.test-question').id;
+                btn.disabled = !answers[questionId];
+            });
+        }
+        
+        // Обновить прогресс-бар
+        function updateProgress(current) {
+            const percent = (current / totalQuestions) * 100;
+            testProgress.style.width = `${percent}%`;
+        }
+        
+        // Показать результаты
+        function showResults() {
+            // Скрыть все вопросы
+            questions.forEach(question => {
+                question.classList.remove('active');
+            });
+            
+            // Показать результаты
+            document.getElementById('testResults').classList.add('active');
+            
+            // Определить доступные льготы на основе ответов
+            const benefits = determineBenefits();
+            
+            // Отобразить льготы
+            displayBenefits(benefits);
+            
+            // Прокрутить к результатам
+            window.scrollTo({
+                top: document.getElementById('testResults').offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Определить доступные льготы
+        function determineBenefits() {
+            const benefits = [];
+            
+            // Проверка ответов и добавление соответствующих льгот
+            if (answers['question1'] === 'pensioner') {
+                benefits.push({
+                    title: "Пенсионные льготы",
+                    description: "Скидка на оплату ЖКУ, бесплатный проезд в общественном транспорте, налоговые льготы"
+                });
+            }
+            
+            if (answers['question1'] === 'child') {
+                benefits.push({
+                    title: "Льготы для детей",
+                    description: "Бесплатное школьное питание, льготный проезд, бесплатные лекарства по рецепту"
+                });
+            }
+            
+            if (answers['question2'] && answers['question2'] !== 'no') {
+                const group = answers['question2'].replace('disabled', '');
+                benefits.push({
+                    title: `Льготы для инвалидов ${group} группы`,
+                    description: "Пенсия по инвалидности, бесплатные лекарства, льготы на проезд, санаторно-курортное лечение"
+                });
+            }
+            
+            if (answers['question3'] && answers['question3'] !== 'no') {
+                if (answers['question3'] === 'many') {
+                    benefits.push({
+                        title: "Льготы для многодетных семей",
+                        description: "Субсидии на жилье, земельные участки, льготы по налогам, бесплатное питание в школах"
+                    });
+                } else {
+                    benefits.push({
+                        title: "Льготы для семей с детьми",
+                        description: "Пособия на ребенка, налоговые вычеты, льготы на детский сад"
+                    });
+                }
+                
+                if (answers['question3'] === 'pregnant') {
+                    benefits.push({
+                        title: "Пособия для беременных",
+                        description: "Пособие по беременности и родам, единовременное пособие при рождении ребенка"
+                    });
+                }
+            }
+            
+            if (answers['question4'] === 'yes') {
+                benefits.push({
+                    title: "Социальные пособия",
+                    description: "Пособие по малообеспеченности, субсидии на ЖКУ, бесплатная юридическая помощь"
+                });
+            }
+            
+            if (answers['question5'] && answers['question5'] !== 'no') {
+                if (answers['question5'] === 'veteran') {
+                    benefits.push({
+                        title: "Льготы для ветеранов",
+                        description: "Пенсионные льготы, налоговые льготы, льготы на медицинское обслуживание"
+                    });
+                } else {
+                    benefits.push({
+                        title: "Льготы для семей ветеранов",
+                        description: "Компенсации, льготы на образование, жилищные льготы"
+                    });
+                }
+            }
+            
+            // Если не найдено льгот, показать общие
+            if (benefits.length === 0) {
+                benefits.push({
+                    title: "Общие льготы",
+                    description: "Налоговые вычеты, льготы на медицинские услуги, льготы на образование"
+                });
+            }
+            
+            return benefits;
+        }
+        
+        // Отобразить льготы
+        function displayBenefits(benefits) {
+            benefitsList.innerHTML = '';
+            
+            benefits.forEach(benefit => {
+                const item = document.createElement('div');
+                item.className = 'benefit-item';
+                item.innerHTML = `
+                    <h3>${benefit.title}</h3>
+                    <p>${benefit.description}</p>
+                `;
+                benefitsList.appendChild(item);
+            });
+        }
+        
+        // Инициализировать тест при загрузке страницы
+        initTest();
+    </script>
+</body>
+</html>
